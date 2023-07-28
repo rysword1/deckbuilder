@@ -14,7 +14,7 @@ function AppRoutes({ cards, card}) {
                 <Route exact path="cards/:id" elemtnt={<Card card={card}/>} />
                 <Route exact path="/decks" element={<Decks />} />
                 <Route exact path="/decks/:id" element={<Deck />} />
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/" element={<Home card={card} />} />
             </Routes>
         </div>
     );

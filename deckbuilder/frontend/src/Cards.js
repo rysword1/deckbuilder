@@ -1,7 +1,7 @@
 import React from 'react';
-// import { Link } from "react-router-dom";
 
-function Cards({ cards }) {
+
+function Cards({ cards, card }) {
 
     return (
         <div>

@@ -4,11 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DeckbuilderApi from './Api';
 import AppRoutes from './AppRoutes';
 import NavBar from './NavBar';
-// import Home from './Home';
-// import Card from './Card'
-// import Cards from './Cards';
-// import Deck from './Deck';
-// import Decks from './Decks';
+
 
 function App() {
 

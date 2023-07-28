@@ -2,6 +2,7 @@ import React from 'react';
 // import { Link } from "react-router-dom";
 
 function Cards({ cards }) {
+
     return (
         <div>
             <h3>Search Cards!</h3>
@@ -36,6 +37,7 @@ function Cards({ cards }) {
                     <option value="Sorcery">Sorcery</option>
                     <option value="Instant">Instant</option>
                 </select>
+                <button>Search</button>
             </form>
             <p>maybe show like 10 cards.</p>
             <ol>

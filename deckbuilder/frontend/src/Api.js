@@ -12,6 +12,7 @@ class DeckbuilderApi {
         console.log(result);
         return result.data.cards;
     }
+
     // get all cards where json in body is {"name" : "some param"} and or
     // get all cards where json in body is {"colors" : "some param(s)" or "["some params", "some params"]} and or
     // get all cards where json in body is {"type" : "some param"}

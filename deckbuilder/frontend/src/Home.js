@@ -6,7 +6,7 @@ function Home() {
         <div>
             <h1>Welcome to MTG Deckbuiler</h1>
             <Decks />
-            <p>Will be able to click on a deck </p>
+            <p>Will be able to click on a deck and view that specific deck.</p>
         </div>
     );
 }

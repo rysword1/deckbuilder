@@ -65,6 +65,8 @@ class Deck {
         return deck;
     }
 
+    // static async update() {}
+
     static async remove(title) {
         const result = await db.query(
             `DELETE

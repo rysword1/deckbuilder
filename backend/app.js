@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const { NotFoundError } = require("./expressError");
 
-const decksRoutes = require('./routes/decks');
+const decksRoutes = require("./routes/decks");
 
 const morgan = require("morgan");
 

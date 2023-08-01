@@ -20,6 +20,7 @@
     "morgan": "^1.10.0",
     "mtgsdk": "^0.2.0",
     "pg": "^8.11.2",
+    "postgresql": "^0.0.1",
     "supertest": "^6.3.3"
   },
   "devDependencies": {

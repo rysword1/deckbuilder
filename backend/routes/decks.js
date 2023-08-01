@@ -9,7 +9,8 @@ const Deck = require("../models/deck");
 const deckNewSchema = require("../schemas/deckNew.json");
 const deckQuerySchema = require("../schemas/deckQuery.json");
 
-const router = new express.Router();
+// const router = new express.Router();
+const router = express.Router();
 
 router.post("/", async function (req, res, next) {
     try {
@@ -61,3 +62,5 @@ router.delete("/:title", async function (req, res, next) {
         return next(err);
     }
 });
+
+module.exports = router;

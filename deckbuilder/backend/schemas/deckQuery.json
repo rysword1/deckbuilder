@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://our.deck.com/deckQuery.shcema.json",
+    "type": "object",
+    "properties": {
+        "titleLike": {
+            "type": "string",
+            "minLength": 1
+        }
+    },
+    "additionalProperties": false,
+    "required": []
+}

@@ -38,7 +38,7 @@ class Deck {
         let where = [];
         let values = [];
 
-        const { title } = searchFilters;
+        const { titleLike } = searchFilters;
 
         if (titleLike) {
             values.push(`%${titleLike}%`)

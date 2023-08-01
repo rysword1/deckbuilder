@@ -12,7 +12,7 @@
             "type": "string",
             "format": "date"
         },
-        "card_id": {
+        "card_ids": {
             "type": "string"
         }
     },

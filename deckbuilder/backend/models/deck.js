@@ -6,7 +6,7 @@ const { BadRequestError, NotFoundError } = require("../expressError");
 
 class Deck {
 
-    static async create({ title, dateCreated, card_id }) {
+    static async create({ title, dateCreated, card_ids }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -20,11 +20,11 @@ class Deck {
             `INSERT INTO decks
              (title, date_created, card_id)
              VALUES ($1, $2, $3, )
-             RETURNING title, date_created AS "dateCreated", card_id`,
+             RETURNING title, date_created AS "dateCreated", card_ids`,
              [
                 title,
                 dateCreated,
-                card_id
+                card_ids
              ],
         );
         const deck = result.rows[0];
@@ -33,7 +33,7 @@ class Deck {
     }
 
     static async getAll(searchFilters = {}) {
-        let searchQuery = `SELECT title, date_created AS dateCreated, card_id
+        let searchQuery = `SELECT title, date_created AS dateCreated, card_ids
                            FROM decks`;
         let where = [];
         let values = [];
@@ -53,7 +53,7 @@ class Deck {
 
     static async get(title) {
         const result = await db.query(
-            `SELECT title, date_created AS "dateCreated, card_id
+            `SELECT title, date_created AS "dateCreated, card_ids
              FROM decks
              WHERE title = $1`,
         [handle]);

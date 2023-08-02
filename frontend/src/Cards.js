@@ -1,20 +1,49 @@
-import React from 'react';
+import React, { useState} from 'react';
+// import DeckbuilderApi from './Api';
 
 
-function Cards({ cards, card }) {
+function Cards({ cards, updateSearch }) {
+
+    const INITIAL_STATE = {
+        name: "",
+        color: "",
+        type: ""
+    }
+
+    const [formData, setFormData] = useState(INITIAL_STATE);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(formData => ({
+            ...formData,
+            [name]: value
+        }));
+    }
+
+    // on submit prevent reload (preventDefault())
+    // clear form values (setFormData = INITIAL_STATE)
+    // update search terms as needed (name, color, type)
+    // complete the search for new cards using the values of name, color, type
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormData(INITIAL_STATE);
+    }
 
     return (
         <div>
             <h3>Search Cards!</h3>
-            <form>
-                <label for="name">Name: </label>
-                <input type="text"
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Name: </label>
+                <input id="name"
+                       type="text"
                        name="name"
-                       placeholder="Name" />
+                       placeholder="Name"
+                       value={formData.name}
+                       onChange={handleChange} />
                 
-                <label for="color">Color: </label>
+                <label htmlFor="color">Color: </label>
                 {/* <select type="color" multiple="multiple"> */}
-                <select type="multiple">
+                <select type="multiple" onChange={handleChange}>
                     <option value="">--Pick a color--</option>
                     <option value="W">White</option>
                     <option value="U">Blue</option>
@@ -24,8 +53,8 @@ function Cards({ cards, card }) {
                     <option value="">Colorless</option>
                 </select>
 
-                <label for="type">Type: </label>
-                <select type="type">
+                <label htmlFor="type">Type: </label>
+                <select type="type" onChange={handleChange}>
                     <option value="">--Select an option</option>
                     <option value="Artifact">Artifact</option>
                     <option value="Creature">Creature</option>

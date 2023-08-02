@@ -6,7 +6,13 @@ const mtg = "https://api.magicthegathering.io/v1/cards"
 class DeckbuilderApi {
 
     static async getAllCards() {
-        let result = await axios.get(`${mtg}`);
+        let result = await axios.get(`${mtg}`, {
+            params: {
+                name: "",
+                colors: "",
+                type: ""
+            }
+        });
         console.log(result);
         return result.data.cards;
     }

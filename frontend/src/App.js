@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import DeckbuilderApi from './Api';
 import AppRoutes from './AppRoutes';
 import NavBar from './NavBar';

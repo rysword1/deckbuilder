@@ -41,8 +41,8 @@ function Cards({ cards, updateSearch }) {
                        value={formData.name}
                        onChange={handleChange} />
                 
+                {/* should be able to select multiple colors */}
                 <label htmlFor="color">Color: </label>
-                {/* <select type="color" multiple="multiple"> */}
                 <select type="multiple" onChange={handleChange}>
                     <option value="">--Pick a color--</option>
                     <option value="W">White</option>
@@ -50,7 +50,7 @@ function Cards({ cards, updateSearch }) {
                     <option value="B">Black</option>
                     <option value="R">Red</option>
                     <option value="G">Green</option>
-                    <option value="">Colorless</option>
+                    <option value={null}>Colorless</option>
                 </select>
 
                 <label htmlFor="type">Type: </label>

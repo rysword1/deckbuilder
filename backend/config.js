@@ -15,6 +15,7 @@ function getDatabaseUri() {
 
 // const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
 
+console.log(process.env);
 console.log("Deckbuilder Config:".green);
 console.log("SECRET_KEY:".yellow, SECRET_KEY);
 console.log("PORT:".yellow, PORT.toString());

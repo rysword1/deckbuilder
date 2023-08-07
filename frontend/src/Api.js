@@ -8,24 +8,13 @@ class DeckbuilderApi {
     static async getAllCards() {
         let result = await axios.get(`${mtg}`, {
             params: {
-                "pageSize" : 10
+                "pageSize" : 25
             }
         });
         console.log(result);
         return result.data.cards;
     }
 
-    static async getSearchCards(name, colors, type) {
-        let result = await axios.get(`${mtg}`, {
-            params: {
-                "pageSize" :10,
-                "name": name,
-                "colors": colors,
-                "type": type
-            }
-        });
-        return result.data.cards;
-    }
 
     // get all cards where json in body is {"name" : "some param"} and or
     // get all cards where json in body is {"colors" : "some param(s)" or "["some params", "some params"]} and or

@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import DeckbuilderApi from './Api';
+// import DeckbuilderApi from './Api';
 // import Deck from './Deck';
 
 
@@ -21,7 +21,13 @@ function Cards({ cards, updateSearch }) {
         }));
     }
 
-    const uniqueCards = [...new Map(cards.map(card => [card.name, card])).values()];
+    // const uniqueCards = [...new Map(cards.map(card => [card.name, card])).values()];
+
+    // const hasNoImg = () => {
+    //     if(cards.card.imageUrl === null) {
+    //         return true;
+    //     }
+    // }
 
     // on submit prevent reload (preventDefault())
     // clear form values (setFormData = INITIAL_STATE)
@@ -29,11 +35,6 @@ function Cards({ cards, updateSearch }) {
     // complete the search for new cards using the values of name, color, type
     const handleSubmit = (e) => {
         e.preventDefault();
-        DeckbuilderApi.getSearchCards({
-            name: formData.name,
-            // colors: formData.color,
-            // type: formData.type
-        })
         setFormData(INITIAL_STATE);
     }
 
@@ -51,7 +52,7 @@ function Cards({ cards, updateSearch }) {
                 
                 {/* should be able to select multiple colors */}
                 <label htmlFor="color">Color: </label>
-                <select type="multiple" onChange={handleChange}>
+                <select multiple={true} onChange={handleChange}>
                     <option value="">--Pick a color--</option>
                     <option value="W">White</option>
                     <option value="U">Blue</option>
@@ -76,9 +77,8 @@ function Cards({ cards, updateSearch }) {
                 </select>
                 <button>Search</button>
             </form>
-            <p>maybe show like 10 cards.</p>
             <ol>
-                {uniqueCards.map(card => (
+                {cards.map(card => (
                     <li>
                         <div>
                             <img src={card.imageUrl} alt={card.name}/>

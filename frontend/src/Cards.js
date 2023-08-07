@@ -21,8 +21,6 @@ function Cards({ cards, updateSearch }) {
         }));
     }
 
-    // const uniqueCards = [...new Map(cards.map(card => [card.name, card])).values()];
-
     // on submit prevent reload (preventDefault())
     // clear form values (setFormData = INITIAL_STATE)
     // update search terms as needed (name, color, type)

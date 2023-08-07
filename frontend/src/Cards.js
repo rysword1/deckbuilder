@@ -23,12 +23,6 @@ function Cards({ cards, updateSearch }) {
 
     // const uniqueCards = [...new Map(cards.map(card => [card.name, card])).values()];
 
-    // const hasNoImg = () => {
-    //     if(cards.card.imageUrl === null) {
-    //         return true;
-    //     }
-    // }
-
     // on submit prevent reload (preventDefault())
     // clear form values (setFormData = INITIAL_STATE)
     // update search terms as needed (name, color, type)
@@ -79,14 +73,15 @@ function Cards({ cards, updateSearch }) {
             </form>
             <ol>
                 {cards.map(card => (
-                    <li>
+                    ((card.imageUrl !== undefined) ?
+                    (<li>
                         <div>
                             <img src={card.imageUrl} alt={card.name}/>
                             <button>Add to Deck</button>
                             {/* maybe something like a counter then add to deck */}
-                            {/* if no imageUrl, dont display */}
                         </div>
-                    </li>
+                    </li>) :
+                    null)
                 ))}
             </ol>
         </div>

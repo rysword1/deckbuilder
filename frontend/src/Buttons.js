@@ -5,9 +5,7 @@ function Buttons () {
     const [counter, setCoutner] = useState(0);
 
     const increase = () => {
-        if (counter < 4) {
-            setCoutner(count => count + 1);
-        }
+        setCoutner(count => count + 1);
     }
 
     const decrease = () => {

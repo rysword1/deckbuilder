@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
-// import DeckbuilderApi from './Api';
+import DeckbuilderApi from './Api';
+// import Deck from './Deck';
 
 
 function Cards({ cards, updateSearch }) {
@@ -20,12 +21,19 @@ function Cards({ cards, updateSearch }) {
         }));
     }
 
+    const uniqueCards = [...new Map(cards.map(card => [card.name, card])).values()];
+
     // on submit prevent reload (preventDefault())
     // clear form values (setFormData = INITIAL_STATE)
     // update search terms as needed (name, color, type)
     // complete the search for new cards using the values of name, color, type
     const handleSubmit = (e) => {
         e.preventDefault();
+        DeckbuilderApi.getSearchCards({
+            name: formData.name,
+            // colors: formData.color,
+            // type: formData.type
+        })
         setFormData(INITIAL_STATE);
     }
 
@@ -70,15 +78,15 @@ function Cards({ cards, updateSearch }) {
             </form>
             <p>maybe show like 10 cards.</p>
             <ol>
-                {cards.map(card => (
+                {uniqueCards.map(card => (
                     <li>
                         <div>
                             <img src={card.imageUrl} alt={card.name}/>
                             <button>Add to Deck</button>
                             {/* maybe something like a counter then add to deck */}
-                            {/* if no imageUrl, show type, subtype, and text then the button */}
+                            {/* if no imageUrl, dont display */}
                         </div>
-                        </li>
+                    </li>
                 ))}
             </ol>
         </div>

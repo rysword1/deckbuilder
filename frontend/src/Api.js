@@ -8,12 +8,22 @@ class DeckbuilderApi {
     static async getAllCards() {
         let result = await axios.get(`${mtg}`, {
             params: {
-                name: "",
-                colors: "",
-                type: ""
+                "pageSize" : 10
             }
         });
         console.log(result);
+        return result.data.cards;
+    }
+
+    static async getSearchCards(name, colors, type) {
+        let result = await axios.get(`${mtg}`, {
+            params: {
+                "pageSize" :10,
+                "name": name,
+                "colors": colors,
+                "type": type
+            }
+        });
         return result.data.cards;
     }
 

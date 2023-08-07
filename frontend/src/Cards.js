@@ -1,45 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CardSearchForm from './CardSearchForm';
 import Buttons from './Buttons';
-// import DeckbuilderApi from './Api';
-// import Deck from './Deck';
 
 
-function Cards({ cards, updateSearch }) {
-
-    // const INITIAL_STATE = {
-    //     name: "",
-    //     color: "",
-    //     type: ""
-    // }
-
-    // const [formData, setFormData] = useState(INITIAL_STATE);
-    // const [counter, setCoutner] = useState(0);
-
-    // const increase = () => {
-    //     if (counter < 4) {
-    //         setCoutner(count => count + 1);
-    //     }
-    // }
-
-    // const decrease = () => {
-    //     if (counter > 0) {
-    //         setCoutner(count => count - 1);
-    //     }
-    // }
-
-    // on submit prevent reload (preventDefault())
-    // clear form values (setFormData = INITIAL_STATE)
-    // update search terms as needed (name, color, type)
-    // complete the search for new cards using the values of name, color, type
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // DeckbuilderApi.getSearchCards({
-    //     //     cardName : formData.name
-    //     // });
-    //     // console.log(cardName);
-    //     setFormData(INITIAL_STATE);
-    // }
+function Cards({ cards }) {
 
     return (
         <div>

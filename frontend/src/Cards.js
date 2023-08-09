@@ -12,6 +12,7 @@ function Cards({ cards }) {
     async function search(name, colors, type) {
         let result = await axios.get(`https://api.magicthegathering.io/v1/cards`, {
             params: {
+                "pageSize" : 25,
                 name: name,
                 colors: colors,
                 type: type

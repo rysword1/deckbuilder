@@ -27,7 +27,10 @@ class DeckbuilderApi {
         let result = await axios.get(`${mtg}`, {
             params: {
                 "pageSize": 25,
-                "name": name
+                "name": name,
+                name: name,
+                colors: colors,
+                type: type
             }
         });
         return result.data.cards;

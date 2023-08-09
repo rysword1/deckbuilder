@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-function CardSearchForm() {
+function CardSearchForm({ search }) {
 
     const INITIAL_STATE = {
         name: "",
-        color: "",
+        colors: "",
         type: ""
     }
 
@@ -20,10 +20,7 @@ function CardSearchForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // DeckbuilderApi.getSearchCards({
-        //     cardName : formData.name
-        // });
-        // console.log(cardName);
+        search(formData.name, formData.colors, formData.type);
         setFormData(INITIAL_STATE);
     }
 
@@ -40,7 +37,7 @@ function CardSearchForm() {
         </div>
 
         <div>
-            <label htmlFor="color">Color: </label>
+            <label htmlFor="colors">Color: </label>
             <input name="colors"
                 type="checkbox"
                 value="W"

@@ -6,12 +6,12 @@ import Card from './Card';
 import Deck from './Deck';
 import Decks from './Decks';
 
-function AppRoutes({ cards, card}) {
+function AppRoutes({ cards, card, searched }) {
     return (
         <div>
             <Routes>
-                <Route exact path="/cards" element={<Cards cards={cards}/>} />
-                <Route exact path="cards/:id" elemtnt={<Card card={card}/>} />
+                <Route exact path="/cards" element={<Cards cards={cards} />} />
+                <Route exact path="cards/:id" elemtnt={<Card card={card} />} />
                 <Route exact path="/decks" element={<Decks />} />
                 <Route exact path="/decks/:id" element={<Deck />} />
                 <Route exact path="/" element={<Home card={card} />} />

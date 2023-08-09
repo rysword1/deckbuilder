@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <AppRoutes cards={cards} card={card}/>
+        <AppRoutes cards={cards} card={card} />
       </BrowserRouter>
     </div>
   );

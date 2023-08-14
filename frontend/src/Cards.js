@@ -29,10 +29,6 @@ function Cards({ cards }) {
             <h3>Search For Cards!</h3>
             <CardSearchForm search={search} />
             <CardsList cards={currentCards} searchedCards={setCurrentCards} />
-            {/* {showPreSearch ? 
-                <CardsList cards={cards} /> :
-                <SearchedCardsList  /> */}
-            {/* } */}
         </div>
     );
 }

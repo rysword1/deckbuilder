@@ -28,7 +28,7 @@ function Cards({ cards }) {
         <div>
             <h3>Search For Cards!</h3>
             <CardSearchForm search={search} />
-            <CardsList cards={currentCards} searchedCards={setCurrentCards} />
+            <CardsList cards={currentCards} />
         </div>
     );
 }

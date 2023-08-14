@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const mtg = "https://api.magicthegathering.io/v1/cards"
+const rand = Math.floor(Math.random() * 1243);
+console.log(rand);
 
 
 class DeckbuilderApi {
@@ -9,6 +11,7 @@ class DeckbuilderApi {
         let result = await axios.get(`${mtg}`, {
             params: {
                 "pageSize" : 25,
+                "page": rand,
                 "name": name,
                 "colors": colors,
                 "type": type

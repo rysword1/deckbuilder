@@ -18,6 +18,7 @@ class DeckbuilderApi {
         return result.data.cards;
     }
 
+    // filter search on backend for specific number of cards instead of in the CardList component!!!!!!
 
     // get all cards where json in body is {"name" : "some param"} and or
     // get all cards where json in body is {"colors" : "some param(s)" or "["some params", "some params"]} and or

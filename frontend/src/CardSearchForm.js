@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import DeckbuilderApi from "./Api";
 
 function CardSearchForm({ search }) {
 
     const INITIAL_STATE = {
         name: "",
-        colors: "",
-        type: ""
+        colors: null,
+        type: null
     }
 
     const [formData, setFormData] = useState(INITIAL_STATE);

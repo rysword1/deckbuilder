@@ -1,32 +1,18 @@
 import React, { useState, useEffect } from "react";
 // import DeckbuilderApi from "./Api";
-import { useSearchParams } from "react-router-dom";
 
 function CardSearchForm({ cardSearch }) {
-// function CardSearchForm() {
 
     const INITIAL_STATE = {
         name: "",
-        // colors: [],
+        colors: [],
         // type: null
     }
 
+
     const [formData, setFormData] = useState(INITIAL_STATE);
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData(formData => ({
-    //         ...formData,
-    //         [name]: value
-    //     }));
-    // }
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     search(formData.name, formData.colors, formData.type);
-    // }
-
-    let query = "?q="
+    let query = "?q=";
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,13 +20,30 @@ function CardSearchForm({ cardSearch }) {
             ...formData,
             [name]: value
         }));
-    };
+    }
+
+    const handleChecks = (e) => {
+        const {colors, value, checked} = e.target;
+        if (checked) {
+            setFormData({[colors]: [...colors, value]});
+        } else {
+            setFormData({[colors]: colors.filter((e) => e !== value)});
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        query = query + `name=${formData.name}`
+        if (formData.name !== "" && formData.colors !== null) {
+            query = query + `name=${formData.name}+color:${formData.colors}`
+        } else if (formData.name !== "") {
+            query = query + `name=${formData.name}`
+        } else if (formData.colors !=="") {
+            query = query + `color:${formData.colors}`
+        }
+        console.log(query);
         cardSearch(query);
     }
+
 
     return(
     <form onSubmit={handleSubmit}>
@@ -54,37 +57,41 @@ function CardSearchForm({ cardSearch }) {
                 onChange={handleChange} />
         </div>
 
-        {/* <div>
-            <label htmlFor="colors">Color: </label>
+        <div>
+            <label htmlFor="colors">Colors: </label>
             <input name="colors"
                 type="checkbox"
                 value="W"
-                onChange={handleChange} />
+                onChange={handleChecks} />
             <label htmlFor='W'>White</label>
-
             <input name="colors"
                 type="checkbox"
                 value="U"
-                onChange={handleChange} />
+                onChange={handleChecks} />
             <label htmlFor='U'>Blue</label>
             <input name="colors"
                 type="checkbox"
                 value="B"
-                onChange={handleChange} />
+                onChange={handleChecks} />
             <label htmlFor='B'>Black</label>
             <input name="colors"
                 type="checkbox"
                 value="R"
-                onChange={handleChange} />
+                onChange={handleChecks} />
             <label htmlFor='R'>Red</label>
             <input name="colors"
                 type="checkbox"
                 value="G"
-                onChange={handleChange} />
-            <label htmlFor='G'>Green</label>
+                onChange={handleChecks} />
+            <label htmlFor="C">Colorless</label> 
+            <input name="colors"
+                type="checkbox"
+                value="C"
+                onChange={handleChecks} />
+            <label htmlFor="C">Colorless</label>
         </div>
 
-        <div>
+        {/* <div>
             <label htmlFor="type">Type: </label>
 
             <input name="type"

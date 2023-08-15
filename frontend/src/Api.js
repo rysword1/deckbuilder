@@ -22,7 +22,7 @@ class DeckbuilderApi {
     }
 
     static async getAureliaCards() {
-        let result = await axios.get(`https://api.scryfall.com/cards/search?order=name&q=aurelia`);
+        let result = await axios.get(`https://api.scryfall.com/cards/search?order=name&q=aurelia+color=WR`);
         console.log(result.data.data);
         return result.data.data;
     }

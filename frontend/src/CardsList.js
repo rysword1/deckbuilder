@@ -6,7 +6,7 @@ function CardsList({ cards }) {
     return(
         <ol>
             {cards.map(card => (
-                <li>
+                <li key={card.id}>
                     <div>
                         <img src={card?.image_uris?.normal} alt={card?.name}/>
                         <Buttons />

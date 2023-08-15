@@ -5,9 +5,9 @@ function Card({ card }) {
     
     return (
         <div>
-            <h3>Specific Card</h3>
-            <p>{card.name}</p>
-            <p><img src={card.imageUrl} alt={card.name}/></p>
+            <h3>Random Card</h3>
+            <p>{card?.name}</p>
+            <p><img src={card?.image_uris?.normal} alt={card?.name}/></p>
         </div>
     );
 }

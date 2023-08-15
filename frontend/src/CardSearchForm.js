@@ -1,15 +1,32 @@
-import React, { useState } from "react";
-import DeckbuilderApi from "./Api";
+import React, { useState, useEffect } from "react";
+// import DeckbuilderApi from "./Api";
+import { useSearchParams } from "react-router-dom";
 
-function CardSearchForm({ search }) {
+function CardSearchForm({ cardSearch }) {
+// function CardSearchForm() {
 
     const INITIAL_STATE = {
         name: "",
-        colors: null,
-        type: null
+        // colors: [],
+        // type: null
     }
 
     const [formData, setFormData] = useState(INITIAL_STATE);
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData(formData => ({
+    //         ...formData,
+    //         [name]: value
+    //     }));
+    // }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     search(formData.name, formData.colors, formData.type);
+    // }
+
+    let query = "?q="
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,12 +34,12 @@ function CardSearchForm({ search }) {
             ...formData,
             [name]: value
         }));
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        search(formData.name, formData.colors, formData.type);
-        setFormData(INITIAL_STATE);
+        query = query + `name=${formData.name}`
+        cardSearch(query);
     }
 
     return(
@@ -37,7 +54,7 @@ function CardSearchForm({ search }) {
                 onChange={handleChange} />
         </div>
 
-        <div>
+        {/* <div>
             <label htmlFor="colors">Color: </label>
             <input name="colors"
                 type="checkbox"
@@ -115,7 +132,7 @@ function CardSearchForm({ search }) {
                     value="Instant"
                     onChange={handleChange} />
                 <label htmlFor='Instant'>Instant</label>
-            </div>
+            </div> */}
             <button>Search</button>
         </form>
     );

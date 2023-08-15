@@ -1,25 +1,10 @@
 import axios from "axios";
 
-const mtg = "https://api.magicthegathering.io/v1/cards"
-const rand = Math.floor(Math.random() * 1243);
-console.log(rand);
+
+const mtg = "http://api.scryfall.com/cards";
 
 
 class DeckbuilderApi {
-
-    static async getAllCards(name, colors, type) {
-        let result = await axios.get(`${mtg}`, {
-            params: {
-                "pageSize" : 25,
-                "page": rand,
-                "name": name,
-                "colors": colors,
-                "type": type
-            }
-        });
-        console.log(result);
-        return result.data.cards;
-    }
 
     // filter search on backend for specific number of cards instead of in the CardList component!!!!!!
 
@@ -27,22 +12,25 @@ class DeckbuilderApi {
     // get all cards where json in body is {"colors" : "some param(s)" or "["some params", "some params"]} and or
     // get all cards where json in body is {"type" : "some param"}
     // return result.data.cards
-    static async search(name, colors, type) {
-        let result = await axios.get(`https://api.magicthegathering.io/v1/cards`, {
+    static async cardSearch(name) {
+        let result = await axios.get(`${mtg}/search`, {
             params: {
-                "pageSize": 25,
                 name: name,
-                colors: colors,
-                type: type
             }
         });
         return result.data.cards;
     }
 
-    static async getCard() {
-        let result = await axios.get(`${mtg}/b5a86869-617b-56ed-a91e-b37f52abc98f`);
+    static async getAureliaCards() {
+        let result = await axios.get(`https://api.scryfall.com/cards/search?order=name&q=aurelia`);
+        console.log(result.data.data);
+        return result.data.data;
+    }
+
+    static async getRandomCard() {
+        let result = await axios.get(`${mtg}/random`);
         console.log(result);
-        return result.data.card;
+        return result.data;
     }
     
 }

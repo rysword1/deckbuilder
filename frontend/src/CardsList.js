@@ -6,14 +6,12 @@ function CardsList({ cards }) {
     return(
         <ol>
             {cards.map(card => (
-                ((card.imageUrl !== undefined) ?
-                    (<li>
-                        <div>
-                            <img src={card.imageUrl} alt={card.name}/>
-                            <Buttons />
-                        </div>
-                    </li>) :
-                null)
+                <li>
+                    <div>
+                        <img src={card?.image_uris?.normal} alt={card?.name}/>
+                        <Buttons />
+                    </div>
+                </li>
             ))}
         </ol>
     );

@@ -3,14 +3,18 @@ import React, { useState, useEffect } from "react";
 
 function CardSearchForm({ cardSearch }) {
 
-    const INITIAL_STATE = {
-        name: "",
+    // const INITIAL_STATE = {
+    //     name: "",
+    //     colors: [],
+    //     // type: null
+    // }
+
+
+    const [formData, setFormData] = useState({
+        // name: "",
         colors: [],
-        // type: null
-    }
-
-
-    const [formData, setFormData] = useState(INITIAL_STATE);
+        types: []
+    });
 
     let query = "?q=";
 
@@ -23,23 +27,43 @@ function CardSearchForm({ cardSearch }) {
     }
 
     const handleChecks = (e) => {
-        const {colors, value, checked} = e.target;
+        const {value, checked} = e.target;
+        const {colors} = formData;
+        const {types} = formData;
+
+        console.log(`${value} is ${checked}`);
+
         if (checked) {
-            setFormData({[colors]: [...colors, value]});
+            setFormData({
+                colors: [...colors, value],
+                types: [...types, value]
+            });
         } else {
-            setFormData({[colors]: colors.filter((e) => e !== value)});
+            setFormData({
+                colors: colors.filter((e) => e !== value),
+                types: types.filter((e) => e !== value)
+            });
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formData.name !== "" && formData.colors !== null) {
-            query = query + `name=${formData.name}+color:${formData.colors}`
-        } else if (formData.name !== "") {
-            query = query + `name=${formData.name}`
-        } else if (formData.colors !=="") {
-            query = query + `color:${formData.colors}`
-        }
+        // if (formData.name !== "" && formData.colors !== "") {
+        //     query = query + `name=${formData.name}+color:${formData.colors}`
+        // } else if (formData.name !== "") {
+        //     query = query + `name=${formData.name}`
+        // } else if (formData.colors !=="") {
+        //     query = query + `color:${formData.colors}`
+        // }
+        
+        // QUERY FOR NAME
+        // query = query + `name=${formData.name}`
+
+        // QUERY FOR COLORS
+        // query = query + `color:${formData.colors}`
+
+        // QUERY FOR TYPES
+        query = query + `type:${formData.types}`
         console.log(query);
         cardSearch(query);
     }
@@ -83,7 +107,7 @@ function CardSearchForm({ cardSearch }) {
                 type="checkbox"
                 value="G"
                 onChange={handleChecks} />
-            <label htmlFor="C">Colorless</label> 
+            <label htmlFor="G">Green</label> 
             <input name="colors"
                 type="checkbox"
                 value="C"
@@ -91,55 +115,55 @@ function CardSearchForm({ cardSearch }) {
             <label htmlFor="C">Colorless</label>
         </div>
 
-        {/* <div>
-            <label htmlFor="type">Type: </label>
+        <div>
+            <label htmlFor="types">Type: </label>
 
-            <input name="type"
+            <input name="types"
                     type="checkbox"
-                    value="Artifact"
-                    onChange={handleChange} />
+                    value="artifact"
+                    onChange={handleChecks} />
                 <label htmlFor='Artifact'>Artifact</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="Creature"
-                    onChange={handleChange} />
+                    value="creature"
+                    onChange={handleChecks} />
                 <label htmlFor='Creature'>Creature</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="Enchantment"
-                    onChange={handleChange} />
+                    value="enchantment"
+                    onChange={handleChecks} />
                 <label htmlFor='Enchantment'>Enchantment</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
                     value="Land"
-                    onChange={handleChange} />
+                    onChange={handleChecks} />
                 <label htmlFor='Land'>Land</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="BasicLand"
-                    onChange={handleChange} />
+                    value="basic"
+                    onChange={handleChecks} />
                 <label htmlFor='BasicLand'>Basic Land</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="Legendary"
-                    onChange={handleChange} />
+                    value="legendary"
+                    onChange={handleChecks} />
                 <label htmlFor='Legendary'>Legendary</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="Planeswalker"
-                    onChange={handleChange} />
+                    value="planeswalker"
+                    onChange={handleChecks} />
                 <label htmlFor='Planeswalker'>Planeswalker</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="Sorcery"
-                    onChange={handleChange} />
+                    value="sorcery"
+                    onChange={handleChecks} />
                 <label htmlFor='Sorcery'>Sorcery</label>
-                <input name="type"
+                <input name="types"
                     type="checkbox"
-                    value="Instant"
-                    onChange={handleChange} />
+                    value="instant"
+                    onChange={handleChecks} />
                 <label htmlFor='Instant'>Instant</label>
-            </div> */}
+            </div>
             <button>Search</button>
         </form>
     );

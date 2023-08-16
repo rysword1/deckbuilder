@@ -33,19 +33,23 @@ class Deck {
     }
 
     static async getAll(searchFilters = {}) {
-        let searchQuery = `SELECT title, date_created AS dateCreated, card_ids
+        let searchQuery = `SELECT title, date_created AS dateCreated, card_ids AS cardIds
                            FROM decks`;
         let where = [];
         let values = [];
 
         const { titleLike } = searchFilters;
 
-        if (titleLike) {
+        if (titleLike !== undefined) {
             values.push(`%${titleLike}%`)
             where.push(`title ILIKE $${values.length}`);
         }
 
-        searchQuery += `ORDER BY title`;
+        if (where.length > 0) {
+            searchQuery += " WHERE" + where.join( " AND ");
+        }
+
+        searchQuery += "ORDER BY title";
 
         const results = await db.query(searchQuery, values);
         return results.rows;
@@ -56,7 +60,7 @@ class Deck {
             `SELECT title, date_created AS "dateCreated, card_ids
              FROM decks
              WHERE title = $1`,
-        [handle]);
+        [title]);
 
         const deck = result.rows[0];
 

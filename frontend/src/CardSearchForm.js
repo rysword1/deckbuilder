@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import DeckbuilderApi from "./Api";
 
 function CardSearchForm({ cardSearch }) {
@@ -62,32 +62,33 @@ function CardSearchForm({ cardSearch }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (formData.name) {
+
+        // if (formData.name !== undefined) {
         //     query = query + `name=${formData.name}`
         // }
-        // if (formData.colors) {
+        // if (formData.colors !== undefined) {
         //     query = query + `colors:${formData.colors}`
         // }
-        // if (formData.types) {
+        // if (formData.types !== undefined) {
         //     query = query + `type=${formData.types}`
         // }
 
 
-        if (formData.name !== undefined && formData.colors !== undefined && formData.types !== undefined) {
-            query = query + `name=${formData.name}+colors:${formData.colors}+type=${formData.types}`
-        } else if (formData.name !== undefined && formData.colors !== undefined) {
-            query = query + `name=${formData.name}+colors:${formData.colors}`
-        } else if (formData.name !== undefined && formData.types !== undefined) {
-            query = query + `name=${formData.name}+type=${formData.types}`
-        } else if (formData.colors !== undefined && formData.types !== undefined) {
-            query = query + `colors:${formData.colors}+type=${formData.types}`
-        } else if (formData.name !== undefined) {
-            query = query + `name=${formData.name}`
-        } else if (formData.colors !== undefined) {
-            query = query + `colors:${formData.colors}`
-        } else if (formData.types !== undefined) {
-            query = query + `type=${formData.types}`
-        }
+        // if (formData.name !== undefined && formData.colors !== undefined && formData.types !== undefined) {
+        //     query = query + `name=${formData.name}+colors:${formData.colors}+type=${formData.types}`
+        // } else if (formData.name !== undefined && formData.colors !== undefined) {
+        //     query = query + `name=${formData.name}+colors:${formData.colors}`
+        // } else if (formData.name !== undefined && formData.types !== undefined) {
+        //     query = query + `name=${formData.name}+type=${formData.types}`
+        // } else if (formData.colors !== undefined && formData.types !== undefined) {
+        //     query = query + `colors:${formData.colors}+type=${formData.types}`
+        // } else if (formData.name !== undefined) {
+        //     query = query + `name=${formData.name}`
+        // } else if (formData.colors !== undefined) {
+        //     query = query + `colors:${formData.colors}`
+        // } else if (formData.types !== undefined) {
+        //     query = query + `type=${formData.types}`
+        // }
         
         // QUERY FOR NAME
         // query = query + `name=${formData.name}`
@@ -96,7 +97,7 @@ function CardSearchForm({ cardSearch }) {
         // query = query + `color:${formData.colors}`
 
         // QUERY FOR TYPES
-        // query = query + `type=${formData.types}`
+        query = query + `type=${formData.types}`
         console.log(query);
         cardSearch(query);
     }

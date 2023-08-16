@@ -45,7 +45,7 @@ class Deck {
             where.push(`title ILIKE $${values.length}`);
         }
 
-        searchQuery += "ORDER BY title";
+        searchQuery += `ORDER BY title`;
 
         const results = await db.query(searchQuery, values);
         return results.rows;

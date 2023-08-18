@@ -1,22 +1,16 @@
 import React, { useState } from "react";
-// import DeckbuilderApi from "./Api";
+
 
 function CardSearchForm({ cardSearch }) {
 
-    // const INITIAL_STATE = {
-    //     name: "",
-    //     colors: [],
-    //     // type: null
-    // }
-
-
     const [formData, setFormData] = useState({
-        // name: "",
+        name: "",
         colors: [],
         types: []
     });
 
     let query = "?q=";
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,11 +28,13 @@ function CardSearchForm({ cardSearch }) {
 
         if (checked) {
             setFormData({
-                colors: [...colors, value],
+                ...formData,
+                colors: [...colors, value]
             });
         } else {
             setFormData({
-                colors: colors.filter((e) => e !== value),
+                ...formData,
+                colors: colors.filter((e) => e !== value)
             });
         }
     }
@@ -51,53 +47,34 @@ function CardSearchForm({ cardSearch }) {
 
         if (checked) {
             setFormData({
+                ...formData,
                 types: [...types, value]
             });
         } else {
             setFormData({
+                ...formData,
                 types: types.filter((e) => e !== value)
-            })
+            });
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // if (formData.name !== undefined) {
-        //     query = query + `name=${formData.name}`
-        // }
-        // if (formData.colors !== undefined) {
-        //     query = query + `colors:${formData.colors}`
-        // }
-        // if (formData.types !== undefined) {
-        //     query = query + `type=${formData.types}`
-        // }
+        if (formData.name) {
+            query = query + `name=${formData.name}`;
+        }
 
+        if (formData.colors.length > 0) {
+            query = query + `+color:${formData.colors.join("")}`;
+        }
 
-        // if (formData.name !== undefined && formData.colors !== undefined && formData.types !== undefined) {
-        //     query = query + `name=${formData.name}+colors:${formData.colors}+type=${formData.types}`
-        // } else if (formData.name !== undefined && formData.colors !== undefined) {
-        //     query = query + `name=${formData.name}+colors:${formData.colors}`
-        // } else if (formData.name !== undefined && formData.types !== undefined) {
-        //     query = query + `name=${formData.name}+type=${formData.types}`
-        // } else if (formData.colors !== undefined && formData.types !== undefined) {
-        //     query = query + `colors:${formData.colors}+type=${formData.types}`
-        // } else if (formData.name !== undefined) {
-        //     query = query + `name=${formData.name}`
-        // } else if (formData.colors !== undefined) {
-        //     query = query + `colors:${formData.colors}`
-        // } else if (formData.types !== undefined) {
-        //     query = query + `type=${formData.types}`
-        // }
-        
-        // QUERY FOR NAME
-        // query = query + `name=${formData.name}`
+        if (formData.types.length > 0) {
+            for (let i in formData.types) {
+                query = query + `+type=${formData.types[i]}`;
+            }
+        }
 
-        // QUERY FOR COLORS
-        // query = query + `color:${formData.colors}`
-
-        // QUERY FOR TYPES
-        query = query + `type=${formData.types}`
         console.log(query);
         cardSearch(query);
     }
@@ -174,7 +151,7 @@ function CardSearchForm({ cardSearch }) {
                 <label htmlFor='Enchantment'>Enchantment</label>
                 <input name="types"
                     type="checkbox"
-                    value="Land"
+                    value="land"
                     onChange={handleTypesChecks} />
                 <label htmlFor='Land'>Land</label>
                 <input name="types"

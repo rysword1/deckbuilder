@@ -33,26 +33,26 @@ class Deck {
     }
 
     static async getAll(searchFilters = {}) {
-        // let searchQuery = `SELECT title,
-        //                           date_created,
-        //                           card_ids
-        //                    FROM decks`;
-        let searchQuery = `SELECT NOW()`;
-        // let where = [];
-        // let values = [];
+        let searchQuery = `SELECT title,
+                                  date_created,
+                                  card_ids
+                           FROM decks`;
+                           
+        let where = [];
+        let values = [];
 
-        // const { titleLike } = searchFilters;
+        const { titleLike } = searchFilters;
 
-        // if (titleLike !== undefined) {
-        //     values.push(`%${titleLike}%`)
-        //     where.push(`title LIKE $${values.length}`);
-        // }
+        if (titleLike !== undefined) {
+            values.push(`%${titleLike}%`)
+            where.push(`title LIKE $${values.length}`);
+        }
 
-        // if (where.length > 0) {
-        //     searchQuery += " WHERE" + where.join( " AND ");
-        // }
+        if (where.length > 0) {
+            searchQuery += " WHERE" + where.join( " AND ");
+        }
 
-        // searchQuery += " ORDER BY title";
+        searchQuery += " ORDER BY title";
         console.log(searchQuery);
 
         const results = await db.query(searchQuery);

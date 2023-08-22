@@ -37,7 +37,7 @@ class Deck {
                                   date_created,
                                   card_ids
                            FROM decks`;
-                           
+
         let where = [];
         let values = [];
 

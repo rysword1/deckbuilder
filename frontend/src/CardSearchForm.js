@@ -110,6 +110,12 @@ function CardSearchForm({ cardSearch }) {
                 }
             }
 
+            // if the index of formData.types is less than the last index number query is type=formData.types[i]+OR
+            
+            // if (formData.types[i] < formData.types.length) {
+            //     query = query + `+type=${formData.types[i]}+OR`;
+            // }
+
         console.log(query);
         cardSearch(query);
     }

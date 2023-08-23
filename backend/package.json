@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
-    "seed": "dropdb deckbuilder && createdb deckbuilder && psql deckbuilder < deckbuilder.sql && dropdb deckbuilder_test && createdb deckbuilder_test %% psql deckbuilder_test < deckbuilder.sql",
+    "seed": "dropdb deckbuilder --maintenance-db=postgres && createdb deckbuilder && psql deckbuilder < deckbuilder.sql",
     "start": "node server.js"
   },
   "author": "",

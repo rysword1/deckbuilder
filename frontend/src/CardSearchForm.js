@@ -94,6 +94,17 @@ function CardSearchForm({ cardSearch }) {
                 query = query + `name=${formData.name}`;
             }
 
+            if (formData.or.length > 0) {
+                for (let i in formData.types) {
+                    formData.types[i] = `+type:${formData.types[i]}`;
+                }
+                query = query + `(${formData.types.join('+OR')})`;
+            } else {
+                for (let i in formData.types) {
+                    query = query + `+(type:${formData.types[i]})`;
+                }
+            }
+
             if (formData.colors.length > 0) {
                 if (formData.colorOptions === "only") {
                     query = query + `+color=${formData.colors.join("")}`;
@@ -103,18 +114,6 @@ function CardSearchForm({ cardSearch }) {
                     query = query + `+color:${formData.colors.join("")}`;
                 }
             }
-
-            if (formData.types.length > 0) {
-                for (let i in formData.types) {
-                    query = query + `+type=${formData.types[i]}`;
-                }
-            }
-
-            // if the index of formData.types is less than the last index number query is type=formData.types[i]+OR
-            
-            // if (formData.types[i] < formData.types.length) {
-            //     query = query + `+type=${formData.types[i]}+OR`;
-            // }
 
         console.log(query);
         cardSearch(query);
@@ -237,11 +236,11 @@ function CardSearchForm({ cardSearch }) {
                     onChange={handleTypesChecks} />
                 <label htmlFor='Instant'>Instant</label>
 
-                <input name="types"
+                <input name="or"
                     type="checkbox"
-                    value="OR"
+                    value="or"
                     onChange={handleOrChecks} />
-                <label htmlFor='OR'>Including These</label>
+                <label htmlFor='or'>Including These</label>
             </div>
             <button>Search</button>
         </form>

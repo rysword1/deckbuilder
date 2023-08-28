@@ -7,6 +7,7 @@ function CardSearchForm({ cardSearch }) {
         name: "",
         colors: [],
         types: [],
+        // dont make colorOptions an array it shouldnt be
         colorOptions: [],
         or: false
     });
@@ -60,6 +61,7 @@ function CardSearchForm({ cardSearch }) {
         }
     }
 
+    // look at his function and decide what would be better if colorOptions is not an array
     const handleColorOptions = (e) => {
         console.log(`selected ${e.target.value}`);
         setFormData({

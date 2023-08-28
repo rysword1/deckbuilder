@@ -10,9 +10,12 @@ function Cards({ cards, cardSearch }) {
 
     async function cardSearch(query) {
         let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
-        setCurrentCards(result.data.data);
-        console.log(result.data.data);
-        return <CardsList cards={result.data.data} />
+        const newCards = result.data.data.map(card => {
+            card.side = 0;
+            return card;
+        });
+        setCurrentCards(newCards);
+        return <CardsList cards={newCards} />
     }
 
     return (

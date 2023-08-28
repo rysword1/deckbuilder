@@ -5,15 +5,9 @@ import Flip from "./Flip";
 
 function CardsList({ cards }) {
 
-    const [side, setSide] = useState(0);
-
-    // function flip() {
-    //     if (side === 0){ 
-    //         setSide(1);
-    //     } else {
-    //         setSide(0);
-    //     }
-    // }
+    const flip = (card) => {
+        card.side = card.side === 0 ? 1 : 0;
+    }
 
     return(
         <ol>
@@ -25,9 +19,9 @@ function CardsList({ cards }) {
                             <Buttons />
                         </div> :
                         <div>
-                            <img src={card?.card_faces?.[side]?.image_uris?.normal} alt={card?.name} />
-                            {/* <button onClick={flip}>Flip</button> */}
-                            <Flip />
+                            <img src={card?.card_faces?.[card.side]?.image_uris?.normal} alt={card?.name} />
+                            <button onClick={flip}>Flip</button>
+                            {/* <Flip /> */}
                             <Buttons />
                         </div>}
                 </li>

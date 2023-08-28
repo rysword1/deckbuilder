@@ -1,12 +1,17 @@
 import React from "react";
 
-function Decks() {
+function Decks({ decks }) {
+    
     return (
         <div>
-            <ul>
-                <li><h3>Deck Title</h3></li>
-                <li>deck cards</li>
-            </ul>
+            {decks.map((deck) => {
+                <div>
+                    <h3>{deck.title}</h3>
+                    <ol>
+                        <li key={card.id}>{deck.card_ids}</li>
+                    </ol>
+                </div>
+            })};
         </div>
     );
 }

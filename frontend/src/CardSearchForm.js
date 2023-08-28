@@ -96,12 +96,12 @@ function CardSearchForm({ cardSearch }) {
 
             if (formData.or.length > 0) {
                 for (let i in formData.types) {
-                    formData.types[i] = `+type:${formData.types[i]}`;
+                    formData.types[i] = `${formData.types[i]}`;
                 }
-                query = query + `(${formData.types.join('+OR')})`;
+                query = query + `(+type:${formData.types.join('+OR+')})`;
             } else {
                 for (let i in formData.types) {
-                    query = query + `+(type:${formData.types[i]})`;
+                    query = query + `(+type:${formData.types[i]})`;
                 }
             }
 
@@ -117,6 +117,7 @@ function CardSearchForm({ cardSearch }) {
 
         console.log(query);
         cardSearch(query);
+        query = "?q=";
     }
 
 

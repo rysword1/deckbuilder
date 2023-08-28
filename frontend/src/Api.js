@@ -1,4 +1,5 @@
 import axios from "axios";
+// import Deck from ".../backend/models/deck";
 
 
 const mtg = "http://api.scryfall.com/cards";
@@ -6,12 +7,6 @@ const mtg = "http://api.scryfall.com/cards";
 
 class DeckbuilderApi {
 
-    // filter search on backend for specific number of cards instead of in the CardList component!!!!!!
-
-    // get all cards where json in body is {"name" : "some param"} and or
-    // get all cards where json in body is {"colors" : "some param(s)" or "["some params", "some params"]} and or
-    // get all cards where json in body is {"type" : "some param"}
-    // return result.data.cards
     static async cardSearch(name) {
         let result = await axios.get(`${mtg}/search`, {
             params: {
@@ -29,6 +24,17 @@ class DeckbuilderApi {
 
     static async getRandomCard() {
         let result = await axios.get(`${mtg}/random`);
+        console.log(result);
+        return result.data;
+    }
+
+    // static async getAllDecks() {
+    //     let result = Deck.getAll();
+    //     return result;
+    // }
+
+    static async getAllDecks() {
+        let result = await axios.get(`http://localhost:3001/decks`)
         console.log(result);
         return result.data;
     }

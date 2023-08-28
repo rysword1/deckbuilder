@@ -10,8 +10,7 @@ function App() {
 
   const [cards, setCards] = useState([]);
   const [card, setCard] = useState([]);
-  // const [searchResults, setSearchResults] = useState([]);
-  // const [decks, setDecks] = useState([]);
+  const [decks, setDecks] = useState([]);
 
   useEffect(() => {
     async function getCardsAndDecks() {
@@ -19,10 +18,8 @@ function App() {
       setCard(card);
       let cards = await DeckbuilderApi.getAureliaCards();
       setCards(cards);
-      // let searchResults = await DeckbuilderApi.search();
-      // setSearchResults(searchResults);
-      // let decks = await DeckbuilderApi.getAllDecks();
-      // setDecks(decks);
+      let decks = await DeckbuilderApi.getAllDecks();
+      setDecks(decks);
     }
     getCardsAndDecks();
   }, []);
@@ -31,9 +28,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        {/* <AppRoutes cards={cards} card={card} searchResults={searchResults}/> */}
-        {/* <AppRoutes cards={cards} card={card} /> */}
-        <AppRoutes card={card} cards={cards} />
+        <AppRoutes card={card} cards={cards} decks={decks} />
       </BrowserRouter>
     </div>
   );

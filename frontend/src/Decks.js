@@ -1,17 +1,12 @@
 import React from "react";
+import Deck from "./Deck";
 
 function Decks({ decks }) {
     
     return (
         <div>
-            {decks.map((deck) => {
-                <div>
-                    <h3>{deck.title}</h3>
-                    <ol>
-                        <li key={card.id}>{deck.card_ids}</li>
-                    </ol>
-                </div>
-            })};
+            <Deck decks={decks} />
+            hi
         </div>
     );
 }

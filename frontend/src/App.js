@@ -15,6 +15,7 @@ function App() {
   useEffect(() => {
     async function getCardsAndDecks() {
       let card = await DeckbuilderApi.getRandomCard();
+      console.log(card);
       setCard(card);
       let cards = await DeckbuilderApi.getAureliaCards();
       setCards(cards);

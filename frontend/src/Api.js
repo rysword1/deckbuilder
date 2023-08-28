@@ -18,25 +18,18 @@ class DeckbuilderApi {
 
     static async getAureliaCards() {
         let result = await axios.get(`https://api.scryfall.com/cards/search?order=name&q=aurelia+color=WR`);
-        console.log(result.data.data);
         return result.data.data;
     }
 
     static async getRandomCard() {
         let result = await axios.get(`${mtg}/random`);
-        console.log(result);
         return result.data;
     }
 
-    // static async getAllDecks() {
-    //     let result = Deck.getAll();
-    //     return result;
-    // }
-
     static async getAllDecks() {
-        let result = await axios.get(`http://localhost:3001/decks`)
+        let result = await axios.get(`http://localhost:3001/decks`);
         console.log(result);
-        return result.data;
+        return result.data.decks;
     }
     
 }

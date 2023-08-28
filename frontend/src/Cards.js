@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CardSearchForm from './CardSearchForm';
 import CardsList from './CardsList';
 import axios from 'axios';
-// import DeckbuilderApi from './Api';
 
 
 function Cards({ cards, cardSearch }) {

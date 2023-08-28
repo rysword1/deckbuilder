@@ -8,7 +8,7 @@ function CardSearchForm({ cardSearch }) {
         colors: [],
         types: [],
         colorOptions: [],
-        or: []
+        or: false
     });
 
     let query = "?q=";
@@ -70,21 +70,11 @@ function CardSearchForm({ cardSearch }) {
 
     const handleOrChecks = (e) => {
         const {value, checked} = e.target;
-        const {or} = formData;
+        formData.or = checked;
 
         console.log(`${value} is ${checked}`);
 
-        if (checked) {
-            setFormData({
-                ...formData,
-                or: [...or, value]
-            });
-        } else {
-            setFormData({
-                ...formData,
-                or: or.filter((e) => e !== value)
-            });
-        }
+        setFormData(formData);
     }
 
     const handleSubmit = (e) => {
@@ -94,14 +84,13 @@ function CardSearchForm({ cardSearch }) {
                 query = query + `name=${formData.name}`;
             }
 
-            if (formData.or.length > 0) {
-                for (let i in formData.types) {
-                    formData.types[i] = `${formData.types[i]}`;
-                }
-                query = query + `(+type:${formData.types.join('+OR+')})`;
-            } else {
-                for (let i in formData.types) {
-                    query = query + `(+type:${formData.types[i]})`;
+            if (formData.types.length > 0) {
+                if (formData.or) {
+                    query = query + `+(type:${formData.types.join('+OR+type:')})`;
+                    console.log(query);
+                } else {
+                    query = query + `+(type:${formData.types.join('+type:')})`;
+                    console.log(query);
                 }
             }
 

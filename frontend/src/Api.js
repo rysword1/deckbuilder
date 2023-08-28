@@ -1,5 +1,4 @@
 import axios from "axios";
-// import Deck from ".../backend/models/deck";
 
 
 const mtg = "http://api.scryfall.com/cards";

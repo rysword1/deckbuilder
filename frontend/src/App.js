@@ -17,13 +17,10 @@ function App() {
     async function getCardsAndDecks() {
       let card = await DeckbuilderApi.getRandomCard();
       setCard(card);
-      let cards = await DeckbuilderApi.getAureliaCards();
       setCards(cards);
       let decks = await DeckbuilderApi.getAllDecks();
-      console.log(decks);
       setDecks(decks);
       let deck = await DeckbuilderApi.getRandDeck();
-      console.log(deck);
       setDeck(deck);
     }
     getCardsAndDecks();

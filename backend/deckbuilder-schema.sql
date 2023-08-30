@@ -1,5 +1,6 @@
 CREATE TABLE decks (
-    title VARCHAR(30) PRIMARY KEY CHECK (title = lower(title)),
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
     date_created TEXT NOT NULL,
     card_ids TEXT NOT NULL
 );

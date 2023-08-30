@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <AppRoutes card={card} cards={cards} decks={decks} deck={deck} />
+        <AppRoutes card={card} cards={cards} deck={deck} decks={decks} />
       </BrowserRouter>
     </div>
   );

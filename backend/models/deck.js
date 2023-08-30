@@ -61,19 +61,19 @@ class Deck {
         return results.rows;
     }
 
-    static async get(title) {
+    static async get(id) {
         const result = await db.query(
             `SELECT id,
                     title,
                     date_created,
                     card_ids
              FROM decks
-             WHERE title = $1`,
-        [title]);
+             WHERE id = $1`,
+        [id]);
 
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${title}`);
+        if (!deck) throw new NotFoundError(`No deck: ${id}`);
 
         return deck;
     }

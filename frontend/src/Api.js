@@ -44,9 +44,10 @@ class DeckbuilderApi {
         return result.data.data;
     }
 
-    static async getRandDeck() {
-        let result = await axios.get(`http://localhost:3001/${2}`);
+    static async getRandDeck(id) {
+        let result = await axios.get(`http://localhost:3001/decks/${id}`);
         console.log(result);
+        return result;
     }
     
 }

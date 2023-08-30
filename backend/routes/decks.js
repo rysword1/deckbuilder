@@ -44,9 +44,9 @@ router.get("/", async function (req, res, next) {
     }
 });
 
-router.get("/:title", async function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
     try {
-        const deck = await Deck.get(req.params.handle);
+        const deck = await Deck.get(req.params.id);
         return res.json({ deck });
     } catch (err) {
         return next(err);
@@ -55,9 +55,9 @@ router.get("/:title", async function (req, res, next) {
 
 // router.patch("/:title", async function (req, res, next) {});
 
-router.delete("/:title", async function (req, res, next) {
+router.delete("/:id", async function (req, res, next) {
     try {
-        await Deck.remove(req.params.title);
+        await Deck.remove(req.params.id);
     } catch (err) {
         return next(err);
     }

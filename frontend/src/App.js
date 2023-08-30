@@ -11,16 +11,20 @@ function App() {
   const [cards, setCards] = useState([]);
   const [card, setCard] = useState([]);
   const [decks, setDecks] = useState([]);
+  const [deck, setDeck] = useState([]);
 
   useEffect(() => {
     async function getCardsAndDecks() {
       let card = await DeckbuilderApi.getRandomCard();
-      console.log(card);
       setCard(card);
       let cards = await DeckbuilderApi.getAureliaCards();
       setCards(cards);
       let decks = await DeckbuilderApi.getAllDecks();
+      console.log(decks);
       setDecks(decks);
+      let deck = await DeckbuilderApi.getRandDeck();
+      console.log(deck);
+      setDeck(deck);
     }
     getCardsAndDecks();
   }, []);
@@ -29,7 +33,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <AppRoutes card={card} cards={cards} decks={decks} />
+        <AppRoutes card={card} cards={cards} decks={decks} deck={deck} />
       </BrowserRouter>
     </div>
   );

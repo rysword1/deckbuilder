@@ -5,7 +5,7 @@ function Card({ card }) {
     
     return (
         <div>
-            <h2>Random Card</h2>
+            <h2>Check out this random card!</h2>
             <p><img src={card?.image_uris?.normal} alt={card?.name}/></p>
         </div>
     );

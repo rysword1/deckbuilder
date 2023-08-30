@@ -6,7 +6,7 @@ const { BadRequestError, NotFoundError } = require("../expressError");
 
 class Deck {
 
-    static async create({ title, dateCreated, card_ids }) {
+    static async create({ id, title, dateCreated, card_ids }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -18,10 +18,11 @@ class Deck {
 
         const result = await db.query(
             `INSERT INTO decks
-             (title, date_created, card_id)
+             (id, title, date_created, card_id)
              VALUES ($1, $2, $3, )
              RETURNING title, date_created AS "dateCreated", card_ids`,
              [
+                id,
                 title,
                 dateCreated,
                 card_ids
@@ -33,7 +34,8 @@ class Deck {
     }
 
     static async getAll(searchFilters = {}) {
-        let searchQuery = `SELECT title,
+        let searchQuery = `SELECT id,
+                                  title,
                                   date_created,
                                   card_ids
                            FROM decks`;
@@ -59,34 +61,35 @@ class Deck {
         return results.rows;
     }
 
-    static async get(title) {
+    static async get(id) {
         const result = await db.query(
-            `SELECT title,
+            `SELECT id,
+                    title,
                     date_created,
                     card_ids
              FROM decks
              WHERE title = $1`,
-        [title]);
+        [id]);
 
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${title}`);
+        if (!deck) throw new NotFoundError(`No deck: ${id}`);
 
         return deck;
     }
 
     // static async update() {}
 
-    static async remove(title) {
+    static async remove(id) {
         const result = await db.query(
             `DELETE
              FROM decks
-             WHERE title = $1
+             WHERE id = $1
              RETURNING title`,
-        [title]);
+        [id]);
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${title}`);
+        if (!deck) throw new NotFoundError(`No deck: ${id}`);
     }
 }
 

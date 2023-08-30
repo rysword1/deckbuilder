@@ -61,35 +61,35 @@ class Deck {
         return results.rows;
     }
 
-    static async get(id) {
+    static async get(title) {
         const result = await db.query(
             `SELECT id,
                     title,
                     date_created,
                     card_ids
              FROM decks
-             WHERE id = $1`,
-        [id]);
+             WHERE title = $1`,
+        [title]);
 
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${id}`);
+        if (!deck) throw new NotFoundError(`No deck: ${title}`);
 
         return deck;
     }
 
     // static async update() {}
 
-    static async remove(id) {
+    static async remove(title) {
         const result = await db.query(
             `DELETE
              FROM decks
-             WHERE id = $1
+             WHERE title = $1
              RETURNING id`,
-        [id]);
+        [title]);
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${id}`);
+        if (!deck) throw new NotFoundError(`No deck: ${title}`);
     }
 }
 

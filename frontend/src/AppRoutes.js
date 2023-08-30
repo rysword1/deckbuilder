@@ -14,7 +14,7 @@ function AppRoutes({ cards, card, cardSearch, decks, deck }) {
                 {/* <Route exact path="cards/:id" elemtnt={<Card card={card} />} /> */}
                 {/* if i want to show a specific card, the /card/${card-id}/ */}
                 <Route exact path="/decks" element={<Decks decks={decks}/>} />
-                <Route exact path="/decks/:id" element={<Deck deck={deck} />} />
+                <Route exact path="/decks/:title" element={<Deck deck={deck} />} />
                 <Route exact path="/" element={<Home card={card} deck={deck} />} />
             </Routes>
         </div>

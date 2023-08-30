@@ -6,9 +6,6 @@
         "titleLike": {
             "type": "string",
             "minLength": 1
-        },
-        "id": {
-            "type": "integer"
         }
     },
     "additionalProperties": false,

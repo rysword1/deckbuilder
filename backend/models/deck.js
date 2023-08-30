@@ -19,8 +19,8 @@ class Deck {
         const result = await db.query(
             `INSERT INTO decks
              (id, title, date_created, card_id)
-             VALUES ($1, $2, $3, )
-             RETURNING title, date_created AS "dateCreated", card_ids`,
+             VALUES ($1, $2, $3, $4)
+             RETURNING id, title, date_created, card_ids`,
              [
                 id,
                 title,
@@ -68,7 +68,7 @@ class Deck {
                     date_created,
                     card_ids
              FROM decks
-             WHERE title = $1`,
+             WHERE id = $1`,
         [id]);
 
         const deck = result.rows[0];
@@ -85,7 +85,7 @@ class Deck {
             `DELETE
              FROM decks
              WHERE id = $1
-             RETURNING title`,
+             RETURNING id`,
         [id]);
         const deck = result.rows[0];
 

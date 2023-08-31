@@ -80,16 +80,16 @@ class Deck {
 
     // static async update() {}
 
-    static async remove(title) {
+    static async remove(id) {
         const result = await db.query(
             `DELETE
              FROM decks
              WHERE title = $1
              RETURNING id`,
-        [title]);
+        [id]);
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${title}`);
+        if (!deck) throw new NotFoundError(`No deck: ${id}`);
     }
 }
 

@@ -39,6 +39,11 @@ class DeckbuilderApi {
         let result = await axios.get(`http://localhost:3001/decks/${rand}`);
         return result.data.deck;
     }
+
+    static async deleteDeck(id) {
+        let result = await axios.delete(`http://localhost:3001/decks/${id}`)
+        return result.data.decks;
+    }
     
 }
 

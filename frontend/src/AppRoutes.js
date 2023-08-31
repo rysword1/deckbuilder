@@ -6,7 +6,7 @@ import Deck from './Deck';
 import Decks from './Decks';
 import CreateDeckForm from './CreateDeckForm';
 
-function AppRoutes({ cards, randCard, cardSearch, decks, randDeck, deck }) {
+function AppRoutes({ cards, randCard, cardSearch, decks, deck }) {
 
     return (
         <div>

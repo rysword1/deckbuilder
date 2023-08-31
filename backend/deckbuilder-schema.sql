@@ -1,5 +1,5 @@
 CREATE TABLE decks (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     date_created TEXT NOT NULL,
     card_ids TEXT []

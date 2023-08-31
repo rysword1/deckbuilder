@@ -6,7 +6,7 @@ const { BadRequestError, NotFoundError } = require("../expressError");
 
 class Deck {
 
-    static async create({ id, title, dateCreated, card_ids }) {
+    static async create({ id, title, dateCreated, descr, card_ids }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -25,6 +25,7 @@ class Deck {
                 id,
                 title,
                 dateCreated,
+                descr,
                 card_ids
              ],
         );
@@ -37,6 +38,7 @@ class Deck {
         let searchQuery = `SELECT id,
                                   title,
                                   date_created,
+                                  descr,
                                   card_ids
                            FROM decks`;
 
@@ -66,6 +68,7 @@ class Deck {
             `SELECT id,
                     title,
                     date_created,
+                    descr,
                     card_ids
              FROM decks
              WHERE id = $1`,

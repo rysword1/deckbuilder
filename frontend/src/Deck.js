@@ -7,16 +7,13 @@ function Deck({ deck }) {
 
     // on submit delete deck 
     const handleSubmit = (e) => {
-        e.preventDefault();
-
-        DeckbuilderApi.deleteDeck(e.target);
-        
+        e.preventDefault(); 
     }
 
     return (
         <div>
             <h2>{deck.title}</h2>
-            <p>{deck.description}</p>
+            <p>{deck.descr}</p>
             <ol>
                 <li>{deck.card_ids}</li>
             </ol>

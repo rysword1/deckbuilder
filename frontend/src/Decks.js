@@ -11,7 +11,7 @@ function Decks({ decks }) {
                     <li key={deck.title}>
                         <Link to={`/decks/${deck.id}`}>
                             <h3>{deck.title}</h3>
-                            {/* <p>{deck.description}</p> */}
+                            <h3>{deck.descr}</h3>
                             <p>{deck.card_ids}</p>
                         </Link>
                     </li>

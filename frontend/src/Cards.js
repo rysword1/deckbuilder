@@ -14,6 +14,7 @@ function Cards({ cards, cardSearch }) {
             card.side = 0;
             return card;
         });
+        console.log(newCards);
         setCurrentCards(newCards);
         return <CardsList cards={newCards} />
     }

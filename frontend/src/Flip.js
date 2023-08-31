@@ -1,10 +1,10 @@
 import React from "react";
 
-function Flip () {
+function Flip ({ flip }) {
 
-    const flip = (card) => {
-        card.side = card.side === 0 ? 1 : 0;
-    }
+    // const flip = (card) => {
+    //     card.side = card.side === 0 ? 1 : 0;
+    // }
 
     return (
         <div>

@@ -6,7 +6,7 @@ function RandomDeck({ deck }) {
     return (
         <div>
             <h2>{deck.title}</h2>
-            <p>{deck.description}</p>
+            <p>{deck.descr}</p>
         </div>
     );
 }

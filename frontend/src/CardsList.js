@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Counter from "./Counter";
 // import Flip from "./Flip";
 
 
 function CardsList({ cards }) {
 
-    const flip =(card) => {
-        card.side = card.side === 0 ? 1 : 0;
+    const flip = (card) => {
+       card.side = card.side === 0 ? 1 : 0;
+        console.log(card.side);
     }
 
     return(
@@ -21,7 +22,7 @@ function CardsList({ cards }) {
                         <div>
                             <img src={card?.card_faces?.[card.side]?.image_uris?.normal} alt={card?.name} />
                             <button onClick={flip}>Flip</button>
-                            {/* <Flip /> */}
+                            {/* <Flip flip={flip} /> */}
                             <Counter />
                         </div>}
                 </li>

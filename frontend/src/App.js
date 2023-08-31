@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import DeckbuilderApi from './Api';
 import AppRoutes from './AppRoutes';
 import NavBar from './NavBar';
-import Deck from './Deck';
 
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [randCard, setRandCard] = useState([]);
   const [decks, setDecks] = useState([]);
-  const [randDeck, setRandDeck] = useState([]);
+  const [deck, setDeck] = useState([]);
 
   useEffect(() => {
     async function getCardsAndDecks() {
@@ -21,8 +20,8 @@ function App() {
       setCards(cards);
       let decks = await DeckbuilderApi.getAllDecks();
       setDecks(decks);
-      let randDeck = await DeckbuilderApi.getRandDeck(Math.floor((Math.random() * decks.length) + 1));
-      setRandDeck(randDeck);
+      let deck = await DeckbuilderApi.getRandDeck(Math.floor((Math.random() * decks.length) + 1));
+      setDeck(deck);
     }
     getCardsAndDecks();
   }, []);
@@ -31,7 +30,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <AppRoutes randCard={randCard} cards={cards} randDeck={randDeck} decks={decks} />
+        <AppRoutes randCard={randCard} cards={cards} decks={decks} deck={deck} />
       </BrowserRouter>
     </div>
   );

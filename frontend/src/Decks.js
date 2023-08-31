@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 function Decks({ decks }) {
@@ -7,13 +8,13 @@ function Decks({ decks }) {
         <div>
             <ul>
                 {decks.map(deck => (
-                    <h3>
-                        <li key={deck.title}>
-                            <a href={`http://localhost:3000/decks/${deck.id}`}>
-                                {deck.title}
-                            </a>
-                        </li>
-                    </h3>
+                    <li key={deck.title}>
+                        <Link to={`/decks/${deck.id}`}>
+                            <h3>{deck.title}</h3>
+                            {/* <p>{deck.description}</p> */}
+                            <p>{deck.card_ids}</p>
+                        </Link>
+                    </li>
                 ))}
             </ul>
         </div>

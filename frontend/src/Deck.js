@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import React from "react";
 // import CardsList from "./CardsList";
-// import DeckbuilderApi from "./Api";
 
 
-function Deck({ randDeck }) {
+function Deck({ deck }) {
 
     return (
         <div>
-            <h2>{randDeck.title}</h2>
+            <h2>{deck.title}</h2>
+            <p>{deck.description}</p>
             <ol>
-
-                {/* {deck.card_ids.map(card_id =>
-                    <li>{card_id}</li>
-                )} */}
-
-                <li>{randDeck.card_ids}</li>
-
+                <li>{deck.card_ids}</li>
             </ol>
-
-            {/* <CardsList cards={cards} /> */}
         </div>
     );
 }

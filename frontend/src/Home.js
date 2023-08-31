@@ -1,16 +1,10 @@
 import React from "react";
-import Deck from "./Deck";
+import RandomDeck from "./RandomDeck";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 
 
-function Home({ randCard, randDeck}) {
-
-    // const [deck, setDeck] = useState([]);
-
-    // async function getDeckId() {
-    //     function onclick()
-    // }
+function Home({ randCard, deck}) {
 
     return (
         <div>
@@ -18,7 +12,7 @@ function Home({ randCard, randDeck}) {
 
             <h2>Check out this random deck!</h2>
 
-            <a href={`http://localhost:3000/decks/${randDeck.id}`}><Deck randDeck={randDeck} /></a>
+            <Link to={`decks/${deck.id}`}><RandomDeck deck={deck} /></Link>
 
             <p>Want to create your own deck? Click the button below!</p>
 

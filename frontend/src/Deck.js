@@ -1,35 +1,25 @@
-import React, { useState } from "react";
-import axios from "axios";
-import CardsList from "./CardsList";
+import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import CardsList from "./CardsList";
+// import DeckbuilderApi from "./Api";
 
 
-function Deck({ cards, deck }) {
-
-    async function cardSearch(query) {
-        let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
-        const newCards = result.data.data.map(card => {
-            card.side = 0;
-            return card;
-        });
-        setCurrentCards(newCards);
-    }
-
-    const [cardImgs, setCardImgs] = (cards);
-
-    async function getCardImgs(card_id) {
-        let result = await axios.get(`https://api.scryfall.com/cards/search${card_id}`);
-        const cardImgs = result.data.data.map(img => {
-            card.side = 0;
-            return card;
-        });
-        setCardImgs(cardImgs);
-    }
-
+function Deck({ randDeck }) {
 
     return (
         <div>
-            <h2>{deck.title}</h2>
-            <CardsList cards={cardImgs} />
+            <h2>{randDeck.title}</h2>
+            <ol>
+
+                {/* {deck.card_ids.map(card_id =>
+                    <li>{card_id}</li>
+                )} */}
+
+                <li>{randDeck.card_ids}</li>
+
+            </ol>
+
+            {/* <CardsList cards={cards} /> */}
         </div>
     );
 }

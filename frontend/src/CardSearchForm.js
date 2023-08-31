@@ -114,6 +114,7 @@ function CardSearchForm({ cardSearch }) {
 
     return(
     <form onSubmit={handleSubmit}>
+        
         <div>
             <label htmlFor="name">Name: </label>
             <input id="name"

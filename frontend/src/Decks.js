@@ -7,7 +7,13 @@ function Decks({ decks }) {
         <div>
             {decks.map(deck => (
                 <ul>
-                    <h3><li key={deck.title}>{deck.title}</li></h3>
+                    <h3>
+                        <li key={deck.title}>
+                            <a href={`http://localhost:3000/decks/${deck.id}`}>
+                                {deck.title}
+                            </a>
+                        </li>
+                    </h3>
                 </ul>
             ))}
         </div>

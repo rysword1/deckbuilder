@@ -5,7 +5,7 @@ import Home from './Home';
 import Deck from './Deck';
 import Decks from './Decks';
 
-function AppRoutes({ cards, card, cardSearch, decks, deck }) {
+function AppRoutes({ cards, randCard, cardSearch, decks, randDeck }) {
 
     return (
         <div>
@@ -14,8 +14,12 @@ function AppRoutes({ cards, card, cardSearch, decks, deck }) {
                 {/* <Route exact path="cards/:id" elemtnt={<Card card={card} />} /> */}
                 {/* if i want to show a specific card, the /card/${card-id}/ */}
                 <Route exact path="/decks" element={<Decks decks={decks}/>} />
-                <Route exact path="/decks/:title" element={<Deck deck={deck} />} />
-                <Route exact path="/" element={<Home card={card} cards={cards} deck={deck} />} />
+
+                {/* need to define what deck instead of usin randDeck!!! */}
+                <Route exact path="/decks/:id" element={<Deck randDeck={randDeck} />} />
+                {/* need to define what deck instead of usin randDeck!!! */}
+
+                <Route exact path="/" element={<Home randCard={randCard} randDeck={randDeck} />} />
             </Routes>
         </div>
     );

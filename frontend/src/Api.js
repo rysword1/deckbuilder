@@ -3,7 +3,6 @@ import axios from "axios";
 
 const mtg = "http://api.scryfall.com/cards";
 
-
 class DeckbuilderApi {
 
     static async cardSearch(name) {
@@ -31,14 +30,13 @@ class DeckbuilderApi {
         return result.data.decks;
     }
 
-    static async getDecksByTitle(id) {
+    static async getDeckById(id) {
         let result = await axios.get(`http://localhost:3001/decks/${id}`);
         return result.data.decks;
     }
 
-    static async getRandDeck(id) {
-        id = 2;
-        let result = await axios.get(`http://localhost:3001/decks/${id}`);
+    static async getRandDeck(rand) {
+        let result = await axios.get(`http://localhost:3001/decks/${rand}`);
         return result.data.deck;
     }
     

@@ -235,6 +235,7 @@ function CardSearchForm({ cardSearch }) {
                     onChange={handleOrChecks} />
                 <label htmlFor='or'>Including These</label>
             </div>
+            
             <button>Search</button>
         </form>
     );

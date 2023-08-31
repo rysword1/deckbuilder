@@ -5,8 +5,15 @@ function Card({ randCard }) {
     
     return (
         <div>
-            <h2>Check out this random card!</h2>
-            <p><img src={randCard?.image_uris?.normal} alt={randCard?.name}/></p>
+            {randCard?.image_uris ?
+                <div>
+                    <img src={randCard?.image_uris?.normal} alt={randCard?.name} /> 
+                </div> :
+                <div>
+                    <img src={randCard?.card_faces?.[randCard.side]?.image_uris?.normal} alt={randCard?.name} />
+                    {/* <Flip /> */}
+                </div>
+            }
         </div>
     );
 }

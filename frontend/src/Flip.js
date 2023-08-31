@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Flip () {
 
-    const [side, setSide] = useState(0);
-
-    const flip = (e) => {
-        if (side === 0){ 
-            setSide(1);
-        } else {
-            setSide(0);
-        }
+    const flip = (card) => {
+        card.side = card.side === 0 ? 1 : 0;
     }
 
     return (

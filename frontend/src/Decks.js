@@ -5,8 +5,8 @@ function Decks({ decks }) {
     
     return (
         <div>
-            {decks.map(deck => (
-                <ul>
+            <ul>
+                {decks.map(deck => (
                     <h3>
                         <li key={deck.title}>
                             <a href={`http://localhost:3000/decks/${deck.id}`}>
@@ -14,8 +14,8 @@ function Decks({ decks }) {
                             </a>
                         </li>
                     </h3>
-                </ul>
-            ))}
+                ))}
+            </ul>
         </div>
     );
 }

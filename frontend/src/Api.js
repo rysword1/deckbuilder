@@ -20,7 +20,7 @@ class DeckbuilderApi {
     }
 
     static async getCardImgs(card_id) {
-        let result = await axios.get(`http://${mtg}/cards/${card_id}`);
+        let result = await axios.get(`http://${mtg}/${card_id}`);
         console.log(result.data.data);
         return result.data.data;
     }

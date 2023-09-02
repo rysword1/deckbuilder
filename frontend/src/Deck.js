@@ -1,38 +1,45 @@
-// import React, { useState, useEffect } from "react";
-import React from "react";
-import CardsList from "./CardsList";
-// import DeckbuilderApi from "./Api";
+import React, { useState, useEffect } from "react";
+import { useParams, Navigate } from "react-router-dom";
+import Card from "./Card";
+import DeckbuilderApi from "./Api";
 
 
-function Deck({ deck }) {
+function Deck() {
+
+    const { id } = useParams();
+
+    const [deck, setDeck] = useState();
+    const [cards, setCards] = useState([]);
+
+    useEffect(() => {
+        async function getDeckAndCards() {
+            let deck = await DeckbuilderApi.getDeckById(id);
+            deck.cards = await Promise.all(deck.card_ids.map(card_id => {
+                return DeckbuilderApi.getCard(card_id);
+            }));
+            console.log(deck.cards.toString());
+            setDeck(deck);
+            setCards(deck.cards);
+        }
+        getDeckAndCards();
+    }, []);
+    
+    // if (!deck) return <Navigate to="http://localhost:3000/decks" />;
 
     // on submit delete deck 
-    const handleSubmit = (e) => {
-        e.preventDefault(); 
-    }
-
-    // useEffect(() => {
-    //     async function getCards() {
-    //         let cards = await deck.card_ids.map(card_id => 
-    //             DeckbuilderApi.getCardImgs(card_id));
-    //       setCards(cards);
-    //     }
-    //     console.log(cards);
-    //     getCards();
-    //   }, []);
+    // const handleSubmit = (e) => {
+    //     e.preventDefault(); 
+    // }
 
     return (
         <div>
-            <h2>{deck.title}</h2>
-            <p>{deck.descr}</p>
+            <h2>{deck?.title}</h2>
+            <p>{deck?.descr}</p>
             <ol>
-                {deck.card_ids.map(card_id => 
-                    <li>{card_id}</li>
-                )}
-                
+                {cards?.map(card => {
+                    <Card card={card} />
+                })}
             </ol>
-            {/* <CardsList cards={cards} /> */}
-            <button onSubmit={handleSubmit}>Delete Deck</button>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -8,13 +8,13 @@ function Decks({ decks }) {
         <div>
             <ul>
                 {decks.map(deck => (
-                    <li key={deck.title}>
-                        <Link to={`/decks/${deck.id}`}>
-                            <h3>{deck.title}</h3>
-                            <h3>{deck.descr}</h3>
-                            <p>{deck.card_ids}</p>
+                        <Link to={`/decks/${deck.id}`} key={deck.id}>
+                            <li>
+                                <h3>{deck.title}</h3>
+                                <p>{deck.descr}</p>
+                                <p>{deck.card_ids}</p>
+                            </li>
                         </Link>
-                    </li>
                 ))}
             </ul>
         </div>

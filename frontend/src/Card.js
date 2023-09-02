@@ -1,20 +1,25 @@
 import React from 'react';
-// import { Link } from "react-router-dom";
+import Counter from './Counter';
 
-function Card({ randCard }) {
+function Card({ card }) {
+
+    function flip() {
+        card.side = card.side === 0 ? 0 : 1;
+    }
     
     return (
-        <div>
-            {randCard?.image_uris ?
+        <li>
+            {card.image_uris ?
                 <div>
-                    <img src={randCard?.image_uris?.normal} alt={randCard?.name} /> 
+                    <img src={card.image_uris.normal} alt={card.name} /> 
                 </div> :
                 <div>
-                    <img src={randCard?.card_faces?.[randCard.side]?.image_uris?.normal} alt={randCard?.name} />
-                    {/* <Flip /> */}
+                    <img src={card.card_faces[card.side].image_uris.normal} alt={card.name} />
+                    <button onClick={flip}>Flip</button>
                 </div>
             }
-        </div>
+            <Counter />
+        </li>
     );
 }
 

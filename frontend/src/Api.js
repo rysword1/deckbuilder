@@ -19,10 +19,9 @@ class DeckbuilderApi {
         return result.data;
     }
 
-    static async getCardImgs(card_id) {
-        let result = await axios.get(`http://${mtg}/${card_id}`);
-        console.log(result.data.data);
-        return result.data.data;
+    static async getCard(card_id) {
+        let result = await axios.get(`${mtg}/${card_id}`);
+        return result.data;
     }
 
     static async getAllDecks() {
@@ -32,7 +31,7 @@ class DeckbuilderApi {
 
     static async getDeckById(id) {
         let result = await axios.get(`http://localhost:3001/decks/${id}`);
-        return result.data.decks;
+        return result.data.deck;
     }
 
     static async getRandDeck(rand) {

@@ -11,17 +11,16 @@ function App() {
   const [cards, setCards] = useState([]);
   const [randCard, setRandCard] = useState([]);
   const [decks, setDecks] = useState([]);
-  const [deck, setDeck] = useState([]);
+  const [randDeck, setRandDeck] = useState([]);
 
   useEffect(() => {
     async function getCardsAndDecks() {
       let randCard = await DeckbuilderApi.getRandomCard();
       setRandCard(randCard);
-      setCards(cards);
       let decks = await DeckbuilderApi.getAllDecks();
       setDecks(decks);
-      let deck = await DeckbuilderApi.getRandDeck(Math.floor((Math.random() * decks.length) + 1));
-      setDeck(deck);
+      let randDeck = await DeckbuilderApi.getRandDeck(Math.floor((Math.random() * decks.length) + 1));
+      setRandDeck(randDeck);
     }
     getCardsAndDecks();
   }, []);
@@ -30,7 +29,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <AppRoutes randCard={randCard} cards={cards} decks={decks} deck={deck} />
+        <AppRoutes randCard={randCard} cards={cards} decks={decks} randDeck={randDeck} />
       </BrowserRouter>
     </div>
   );

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RandomDeck from "./RandomDeck";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 
 
-function Home({ randCard, deck}) {
+function Home({ randCard, randDeck }) {
 
     return (
         <div>
@@ -12,7 +12,15 @@ function Home({ randCard, deck}) {
 
             <h2>Check out this random deck!</h2>
 
-            <Link to={`decks/${deck.id}`}><RandomDeck deck={deck} /></Link>
+            <Link to={`decks/${randDeck.id}`}>
+                <h3>{randDeck.title}</h3>
+                <p>{randDeck.descr}</p>
+            </Link>
+
+            <h2>Check out all decks here!</h2>
+            <Link to="/decks">
+                <button>View All Decks</button>
+            </Link>
 
             <p>Want to create your own deck? Click the button below!</p>
 

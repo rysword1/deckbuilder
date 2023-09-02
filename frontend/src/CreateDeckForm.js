@@ -57,7 +57,6 @@ function CreateDeckForm() {
 
             <div>
                 <label htmlFor="title">Title: </label>
-
                 <input id="title"
                     type="text"
                     name="title"

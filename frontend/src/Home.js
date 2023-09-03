@@ -18,25 +18,9 @@ function Home({ randCard, randDeck }) {
                 <p>{randDeck.description}</p>
             </Link>
 
-            <h2>Check out all decks here!</h2>
-            <Link to="/decks">
-                <button>View All Decks</button>
-            </Link>
-
-            <p>Want to create your own deck? Click the button below!</p>
-
-            <Link to="/create">
-                <button>Create Deck!</button>
-            </Link>
-
             <h2>Check out this random card!</h2>
 
             <Card card={randCard} />
-
-            <p>Want to search for a card? Click the button below!</p>
-            <Link to="/cards">
-                <button>Card Search!</button>
-            </Link>
 
         </div>
     );

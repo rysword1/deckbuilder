@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
-import Card from "./Card";
+import { useParams } from "react-router-dom";
+import CardsList from "./CardsList";
 import DeckbuilderApi from "./Api";
 
 
@@ -8,21 +8,41 @@ function Deck() {
 
     const { id } = useParams();
 
+    const [isLoading, setIsLoading] = useState(true)
     const [deck, setDeck] = useState();
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState(deck);
+
 
     useEffect(() => {
         async function getDeckAndCards() {
             let deck = await DeckbuilderApi.getDeckById(id);
-            deck.cards = await Promise.all(deck.card_ids.map(card_id => {
+            let cards = await Promise.all(deck.card_ids.map(card_id => {
                 return DeckbuilderApi.getCard(card_id);
             }));
-            console.log(deck.cards.toString());
+            // if (deck.card_ids == undefined) {
+            //     let cards = [];
+            //     return cards;
+            // } else {
+            //     let cards = await Promise.all(deck.card_ids.map(card_id => {
+            //         return DeckbuilderApi.getCard(card_id);
+            //     }));
+            // }
+            console.log(cards);
+            const deckCards = cards.map(card => {
+                card.side = 0;
+                return card;
+            });
+            console.log(deckCards);
             setDeck(deck);
-            setCards(deck.cards);
+            setCards(deckCards);
+            setIsLoading(false);
         }
         getDeckAndCards();
     }, []);
+
+    if (isLoading) {
+        return ( <div>LOADING...</div>);
+    }
     
     // if (!deck) return <Navigate to="http://localhost:3000/decks" />;
 
@@ -34,12 +54,8 @@ function Deck() {
     return (
         <div>
             <h2>{deck?.title}</h2>
-            <p>{deck?.descr}</p>
-            <ol>
-                {cards?.map(card => {
-                    <Card card={card} />
-                })}
-            </ol>
+            <p>{deck?.description}</p>
+            <CardsList cards={cards} />
         </div>
     );
 }

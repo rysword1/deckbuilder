@@ -1,55 +1,25 @@
 import React, { useState } from "react";
+import DeckbuilderApi from "./Api";
 
 function CreateDeckForm() {
 
     const [formData, setFormData] = useState({
         title: "",
         date: "",
-        description: ""
+        description: "",
     });
 
-    const handleTitleChange = (e) => {
-        const { title, value } = e.target;
-
-        console.log(`title is ${value}`);
-
+    const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData(formData => ({
             ...formData,
-            [title]: value
-        }));
-    }
-
-    const handleDateChange = (e) => {
-        const { date, value } = e.target;
-
-        console.log(`date is ${value}`);
-
-        setFormData(formData => ({
-            ...formData,
-            [date]: value
-        }));
-    }
-
-    const handleDescriptionChange = (e) => {
-        const { description, value } = e.target;
-
-        console.log(`description is ${value}`);
-
-        setFormData(formData => ({
-            ...formData,
-            [description]: value
+            [name]: value
         }));
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // FIGURE THIS OUT
-        // sqlQuery = title + date;
-        // FIGURE THIS OUT
-
-        // take to /decks/:id
-
+        // result = axios.post(`http://localhost:3001/decks`);
     }
 
     return(
@@ -62,7 +32,7 @@ function CreateDeckForm() {
                     name="title"
                     placeholder="Deck Title"
                     value={formData.title}
-                    onChange={handleTitleChange} />
+                    onChange={handleChange} />
             </div>
 
             <div>
@@ -73,7 +43,7 @@ function CreateDeckForm() {
                     name="date"
                     placeholder="yyyy-mm-dd"
                     value={formData.date}
-                    onChange={handleDateChange} />
+                    onChange={handleChange} />
             </div>
 
             <div>
@@ -84,7 +54,7 @@ function CreateDeckForm() {
                     name="description"
                     placeholder="Deck Description"
                     value={formData.description}
-                    onChange={handleDescriptionChange} />
+                    onChange={handleChange} />
             </div>
 
             <button>Create Deck</button>

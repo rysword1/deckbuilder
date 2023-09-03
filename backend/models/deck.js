@@ -2,11 +2,12 @@
 
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
+const { sqlForPartialUpdate } = require("../helpers/sql");
 
 
 class Deck {
 
-    static async create({ id, title, date_created, description, card_ids }) {
+    static async create({ id, title, date_created, description }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -19,14 +20,13 @@ class Deck {
         const result = await db.query(
             `INSERT INTO decks
              (id, title, date_created, description, card_id)
-             VALUES ($1, $2, $3, $4, $5)
-             RETURNING id, title, date_created, description, card_ids`,
+             VALUES ($1, $2, $3, $4)
+             RETURNING id, title, date_created, description`,
              [
                 id,
                 title,
                 date_created,
-                description,
-                card_ids
+                description
              ],
         );
         const deck = result.rows[0];
@@ -81,7 +81,35 @@ class Deck {
         return deck;
     }
 
-    // static async update() {}
+    static async update(id, data) {
+        const { setCols, values } = sqlForPartialUpdate(
+            data,
+            {
+                title: "title",
+                date_created: "date_created",
+                description: "description",
+                card_ids: []
+            });
+        
+        const handleVarIdx = "$" + (values.length + 1);
+
+        const querySql = `UPDATE decks
+                          set ${setCols}
+                          WHERE id = ${handleVarIdx}
+                          RETURNING id,
+                                    title,
+                                    date_created,
+                                    description,
+                                    card_ids`;
+
+        const result = await db.query(querySql, [...values, id]);
+
+        const deck = result.rows[0];
+
+        if (!deck) throw new NotFoundError(`No deck: ${id}`);
+
+        return deck;
+    }
 
     static async remove(id) {
         const result = await db.query(

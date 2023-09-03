@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import RandomDeck from "./RandomDeck";
+import React from "react";
+// import RandomDeck from "./RandomDeck";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 
@@ -30,7 +30,7 @@ function Home({ randCard, randDeck }) {
 
             <h2>Check out this random card!</h2>
 
-            <Card randCard={randCard} />
+            {/* <Card card={randCard} /> */}
 
             <p>Want to search for a card? Click the button below!</p>
             <Link to="/cards">

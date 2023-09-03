@@ -25,7 +25,12 @@ class DeckbuilderApi {
     }
 
     static async createDeck(title, description, date_created) {
-        let result = await axios.post(`http://localhost:3001/decks`);
+        let result = await axios.post(`http://localhost:3001/decks`, {
+        data: {
+            title: title,
+            description: description,
+            date_created: date_created
+        }});
         return result.data.deck;
     }
 

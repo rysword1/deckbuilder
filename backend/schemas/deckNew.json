@@ -14,9 +14,6 @@
         },
         "description": {
             "type": "string"
-        },
-        "card_ids": {
-            "type": "string"
         }
     },
     "additionalProperties": false,

@@ -16,6 +16,8 @@ class DeckbuilderApi {
 
     static async getRandomCard() {
         let result = await axios.get(`${mtg}/random`);
+        console.log(result);
+        result.data.side = 0;
         return result.data;
     }
 

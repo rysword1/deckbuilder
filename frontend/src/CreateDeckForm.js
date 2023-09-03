@@ -19,7 +19,8 @@ function CreateDeckForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // result = axios.post(`http://localhost:3001/decks`);
+        const result = DeckbuilderApi.createDeck(formData.title, formData.date, formData.description);
+        return result;
     }
 
     return(

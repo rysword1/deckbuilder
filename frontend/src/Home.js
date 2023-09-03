@@ -1,10 +1,11 @@
 import React from "react";
-// import RandomDeck from "./RandomDeck";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 
 
 function Home({ randCard, randDeck }) {
+
+    
 
     return (
         <div>
@@ -14,7 +15,7 @@ function Home({ randCard, randDeck }) {
 
             <Link to={`decks/${randDeck.id}`}>
                 <h3>{randDeck.title}</h3>
-                <p>{randDeck.descr}</p>
+                <p>{randDeck.description}</p>
             </Link>
 
             <h2>Check out all decks here!</h2>
@@ -30,7 +31,7 @@ function Home({ randCard, randDeck }) {
 
             <h2>Check out this random card!</h2>
 
-            {/* <Card card={randCard} /> */}
+            <Card card={randCard} />
 
             <p>Want to search for a card? Click the button below!</p>
             <Link to="/cards">

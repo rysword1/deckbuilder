@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 
 function App() {
 
+  const [isLoading, setIsLoading] = useState(true);
   const [cards, setCards] = useState([]);
   const [randCard, setRandCard] = useState([]);
   const [decks, setDecks] = useState([]);
@@ -21,9 +22,14 @@ function App() {
       setDecks(decks);
       let randDeck = await DeckbuilderApi.getRandDeck(Math.floor((Math.random() * decks.length) + 1));
       setRandDeck(randDeck);
+      setIsLoading(false);
     }
     getCardsAndDecks();
   }, []);
+
+  if (isLoading) {
+    return ( <div>LOADING...</div>);
+}
 
   return (
     <div className="App">

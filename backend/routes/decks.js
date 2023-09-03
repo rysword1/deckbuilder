@@ -8,7 +8,7 @@ const Deck = require("../models/deck");
 
 const deckNewSchema = require("../schemas/deckNew.json");
 const deckQuerySchema = require("../schemas/deckQuery.json");
-const deckUpdateSchema = require(".../schemas/deckUpdate.json");
+const deckUpdateSchema = require("../schemas/deckUpdate.json");
 
 // const router = new express.Router();
 const router = express.Router();

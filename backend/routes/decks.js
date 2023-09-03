@@ -53,7 +53,20 @@ router.get("/:id", async function (req, res, next) {
     }
 });
 
-// router.patch("/:title", async function (req, res, next) {});
+router.patch("/:id", async function (req, res, next) {
+    try {
+        const validator = jsonschema.validate(req.body, deckUpdateSchema);
+        if (!validator.valid) {
+            const errs = validator.errors.map(e => e.stack);
+            throw new BadRequestError(errs);
+        }
+
+        const deck = await Deck.update(req.params.handle, req.body);
+        return res.jaon({ deck });
+    } catch (err) {
+        return next(err);
+    }
+});
 
 router.delete("/:id", async function (req, res, next) {
     try {

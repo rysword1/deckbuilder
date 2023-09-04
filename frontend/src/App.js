@@ -9,7 +9,6 @@ import NavBar from './NavBar';
 function App() {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [cards, setCards] = useState([]);
   const [randCard, setRandCard] = useState([]);
   const [decks, setDecks] = useState([]);
   const [randDeck, setRandDeck] = useState([]);
@@ -35,7 +34,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <AppRoutes randCard={randCard} cards={cards} decks={decks} randDeck={randDeck} />
+        <AppRoutes randCard={randCard} decks={decks} randDeck={randDeck} />
       </BrowserRouter>
     </div>
   );

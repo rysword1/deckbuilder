@@ -16,7 +16,6 @@ class DeckbuilderApi {
 
     static async getRandomCard() {
         let result = await axios.get(`${mtg}/random`);
-        console.log(result);
         result.data.side = 0;
         return result.data;
     }
@@ -26,14 +25,16 @@ class DeckbuilderApi {
         return result.data;
     }
 
-    static async createDeck(title, description, date_created) {
-        let result = await axios.post(`http://localhost:3001/decks`, {
-        data: {
+    static async createDeck(title, description) {
+        return axios.post(`http://localhost:3001/decks`, {
             title: title,
             description: description,
-            date_created: date_created
-        }});
-        return result.data.deck;
+        }).then((result) => {
+            return result;
+        }).catch((err) => {
+            console.error(err.message);
+            return err.response;
+        });
     }
 
     static async getAllDecks() {

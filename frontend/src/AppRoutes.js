@@ -6,20 +6,17 @@ import Deck from './Deck';
 import Decks from './Decks';
 import CreateDeckForm from './CreateDeckForm';
 
-function AppRoutes({ cards, randCard, cardSearch, decks, randDeck }) {
+function AppRoutes({ randCard, decks, randDeck }) {
 
     return (
         <div>
             <Routes>
-                <Route exact path="/cards" element={<Cards cards={cards} cardSearch={cardSearch} />} />
+                <Route exact path="/cards" element={<Cards />} />
                 {/* <Route exact path="cards/:id" elemtnt={<Card card={card} />} /> */}
                 {/* if i want to show a specific card, the /card/${card-id}/ */}
 
-                {/* need to define what deck instead of usin randDeck!!! */}
                 {/* <Route exact path="/decks/:id" element={<Deck decks={decks} cantFind="/decks" />} /> */}
                 <Route exact path="/decks/:id" element={<Deck decks={decks} randDeck={randDeck} />} />
-
-                {/* need to define what deck instead of usin randDeck!!! */}
 
                 <Route exact path="/decks" element={<Decks decks={decks}/>} />
 

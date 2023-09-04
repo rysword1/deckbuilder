@@ -5,7 +5,7 @@ function CardsList({ cards }) {
 
     return(
         <ol>
-            {cards.map(card => (
+            {cards?.map(card => (
                 <Card card={card} key={card.id} />
             ))}
         </ol>

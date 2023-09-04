@@ -8,7 +8,7 @@
             "minLength": 1,
             "maxLength": 30
         },
-        "dateCreated": {
+        "date_created": {
             "type": "string",
             "format": "date"
         },

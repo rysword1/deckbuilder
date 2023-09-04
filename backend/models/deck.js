@@ -7,7 +7,7 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Deck {
 
-    static async create({ id, title, date_created, description }) {
+    static async create({ title, date_created, description }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -19,19 +19,16 @@ class Deck {
 
         const result = await db.query(
             `INSERT INTO decks
-             (id, title, date_created, description, card_id)
-             VALUES ($1, $2, $3, $4)
+             (title, date_created, description)
+             VALUES ($1, $2, $3)
              RETURNING id, title, date_created, description`,
              [
-                id,
                 title,
                 date_created,
                 description
              ],
         );
-        const deck = result.rows[0];
-
-        return deck;
+        return result.rows[0];
     }
 
     static async getAll(searchFilters = {}) {

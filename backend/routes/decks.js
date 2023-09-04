@@ -15,13 +15,15 @@ const router = express.Router();
 
 router.post("/", async function (req, res, next) {
     try {
-        const validator = jsonschema.validate(req.body, deckNewSchema);
+        console.log(req.body);
+        const newDeck = req.body;
+        newDeck.date_created = new Date().toISOString().split("T")[0];
+        const validator = jsonschema.validate(newDeck, deckNewSchema);
         if (!validator.valid) {
             const errs = validator.errors.map(e => e.stack);
             throw new BadRequestError(errs);
         }
-
-        const deck = await Deck.create(req.body);
+        const deck = await Deck.create(newDeck);
         return res.status(201).json({ deck });
     } catch (err) {
         return next(err);

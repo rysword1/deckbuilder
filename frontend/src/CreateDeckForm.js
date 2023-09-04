@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DeckbuilderApi from "./Api";
 
 function CreateDeckForm() {
 
+    let navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         title: "",
-        date: "",
         description: "",
     });
 
@@ -17,11 +19,18 @@ function CreateDeckForm() {
         }));
     }
 
+    const createDeck = async () =>  {
+        const result = await DeckbuilderApi.createDeck(formData.title, formData.description);
+        if (result.status === 201) {
+            return navigate(`/decks/${result.data.deck.id}`);
+        } else {
+            return alert(result.data?.error.message);
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        const result = DeckbuilderApi.createDeck(formData.title, formData.date, formData.description);
-        return result;
-    }
+        createDeck();
+        }
 
     return(
         <form onSubmit={handleSubmit}>
@@ -33,17 +42,6 @@ function CreateDeckForm() {
                     name="title"
                     placeholder="Deck Title"
                     value={formData.title}
-                    onChange={handleChange} />
-            </div>
-
-            <div>
-                <label htmlFor="date">Date: </label>
-
-                <input id="date"
-                    type="text"
-                    name="date"
-                    placeholder="yyyy-mm-dd"
-                    value={formData.date}
                     onChange={handleChange} />
             </div>
 

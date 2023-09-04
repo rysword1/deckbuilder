@@ -4,9 +4,9 @@ import CardsList from './CardsList';
 import axios from 'axios';
 
 
-function Cards({ cards, cardSearch }) {
+function Cards() {
 
-    const [currentCards, setCurrentCards] = useState(cards);
+    const [currentCards, setCurrentCards] = useState([]);
 
     async function cardSearch(query) {
         let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);

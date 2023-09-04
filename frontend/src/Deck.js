@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardsList from "./CardsList";
+import Cards from "./Cards";
 import DeckbuilderApi from "./Api";
 
 
@@ -56,6 +57,7 @@ function Deck() {
             <h2>{deck?.title}</h2>
             <p>{deck?.description}</p>
             <CardsList cards={cards} />
+            <Cards />
         </div>
     );
 }

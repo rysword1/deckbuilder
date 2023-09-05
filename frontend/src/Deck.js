@@ -43,22 +43,11 @@ function Deck() {
         return ( <div>LOADING...</div>);
     }
 
-    // async function cardSearch(query) {
-    //     let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
-    //     const newCards = result.data.data.map(card => {
-    //         card.side = 0;
-    //         return card;
-    //     });
-    //     console.log(newCards);
-    //     setCurrentCards(newCards);
-    //     return <CardsList cards={newCards} />
+    // async function updateDeckCards(cardsToAdd) {
+    //     const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToAdd);
+    //     setCards(result);
+    //     return navigate (`/decks/${deck.id}`);
     // }
-
-    async function updateDeckCards(cardsToAdd) {
-        const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToAdd);
-        setCards(result);
-        return navigate (`/decks/${deck.id}`);
-    }
 
     return (
         <div>

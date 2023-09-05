@@ -78,34 +78,45 @@ class Deck {
         return deck;
     }
 
-    static async update(id, data) {
-        const { setCols, values } = sqlForPartialUpdate(
-            data,
-            {
-                title: "title",
-                date_created: "date_created",
-                description: "description",
-                card_ids: []
-            });
+    // static async update(id, data) {
+    //     const { setCols, values } = sqlForPartialUpdate(
+    //         data,
+    //         {
+    //             title: "title",
+    //             date_created: "date_created",
+    //             description: "description",
+    //             card_ids: []
+    //         });
         
-        const handleVarIdx = "$" + (values.length + 1);
+    //     const handleVarIdx = "$" + (values.length + 1);
 
-        const querySql = `UPDATE decks
-                          set ${setCols}
-                          WHERE id = ${handleVarIdx}
-                          RETURNING id,
-                                    title,
-                                    date_created,
-                                    description,
-                                    card_ids`;
+    //     const querySql = `UPDATE decks
+    //                       set ${setCols}
+    //                       WHERE id = ${handleVarIdx}
+    //                       RETURNING id,
+    //                                 title,
+    //                                 date_created,
+    //                                 description,
+    //                                 card_ids`;
 
-        const result = await db.query(querySql, [...values, id]);
+    //     const result = await db.query(querySql, [...values, id]);
 
-        const deck = result.rows[0];
+    //     if (!result.rows[0]) throw new NotFoundError(`No deck: ${id}`);
 
-        if (!deck) throw new NotFoundError(`No deck: ${id}`);
+    //     return result.rows[0];
+    // }
 
-        return deck;
+    static async update(deckId, cardIds) {
+        const result = await db.query(`UPDATE decks
+                                       set card_ids
+                                       VALUES = (${cardIds})
+                                       WEHRE id = ${deckId}
+                                       RETURNING id,
+                                                 title,
+                                                 date_created
+                                                 description,
+                                                 card_ids`);
+        return result.rows[0];
     }
 
     static async remove(id) {

@@ -16,7 +16,7 @@
             "type": "string"
         },
         "card_ids": {
-            "type": "string"
+            "type": "array"
         }
     },
     "additionalProperties": false,

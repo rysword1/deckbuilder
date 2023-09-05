@@ -15,7 +15,6 @@ const router = express.Router();
 
 router.post("/", async function (req, res, next) {
     try {
-        console.log(req.body);
         const newDeck = req.body;
         newDeck.date_created = new Date().toISOString().split("T")[0];
         const validator = jsonschema.validate(newDeck, deckNewSchema);
@@ -58,14 +57,15 @@ router.get("/:id", async function (req, res, next) {
 
 router.patch("/:id", async function (req, res, next) {
     try {
-        const validator = jsonschema.validate(req.body, deckUpdateSchema);
+        const updatedDeck = req.body;
+        const validator = jsonschema.validate(updatedDeck, deckUpdateSchema);
         if (!validator.valid) {
             const errs = validator.errors.map(e => e.stack);
             throw new BadRequestError(errs);
         }
 
-        const deck = await Deck.update(req.params.handle, req.body);
-        return res.jaon({ deck });
+        const deck = await Deck.update(req.params.id, updatedDeck);
+        return res.json({ deck });
     } catch (err) {
         return next(err);
     }

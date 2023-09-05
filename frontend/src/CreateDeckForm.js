@@ -27,10 +27,11 @@ function CreateDeckForm() {
             return alert(result.data?.error.message);
         }
     }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         createDeck();
-        }
+    }
 
     return(
         <form onSubmit={handleSubmit}>

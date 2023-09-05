@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Counter from './Counter';
 
-function Card({ card }) {
+function Card({ card}) {
 
     const [side, setSide] = useState(0);
 

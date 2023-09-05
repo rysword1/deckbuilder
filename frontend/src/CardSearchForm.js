@@ -83,26 +83,26 @@ function CardSearchForm({ cardSearch }) {
         e.preventDefault();
 
             if (formData.name) {
-                query = query + `name=${formData.name}`;
+                query += `name=${formData.name}`;
             }
 
             if (formData.types.length > 0) {
                 if (formData.or) {
-                    query = query + `+(type:${formData.types.join('+OR+type:')})`;
+                    query += `+(type:${formData.types.join('+OR+type:')})`;
                     console.log(query);
                 } else {
-                    query = query + `+(type:${formData.types.join('+type:')})`;
+                    query += `+(type:${formData.types.join('+type:')})`;
                     console.log(query);
                 }
             }
 
             if (formData.colors.length > 0) {
                 if (formData.colorOptions === "only") {
-                    query = query + `+color=${formData.colors.join("")}`;
+                    query += `+color=${formData.colors.join("")}`;
                 } else if (formData.colorOptions === "at-most") {
-                    query = query + `+color<=${formData.colors.join("")}`;
+                    query+= `+color<=${formData.colors.join("")}`;
                 } else if (formData.colorOptions === "including") {
-                    query = query + `+color:${formData.colors.join("")}`;
+                    query += `+color:${formData.colors.join("")}`;
                 }
             }
 

@@ -47,6 +47,13 @@ class DeckbuilderApi {
         return result.data.deck;
     }
 
+    static async updateDeckCards(id, card_ids) {
+        return axios.patch(`http://localhost:3001/decks/${id}`, {
+            card_ids: card_ids
+        });
+    }
+
+
     static async getRandDeck(rand) {
         let result = await axios.get(`http://localhost:3001/decks/${rand}`);
         return result.data.deck;

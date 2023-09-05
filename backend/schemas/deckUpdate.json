@@ -3,18 +3,6 @@
     "$id": "http://our.deck.com/deckUpdate.schema.json",
     "type": "object",
     "properties": {
-        "title": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 30
-        },
-        "date_created": {
-            "type": "string",
-            "format": "date"
-        },
-        "description": {
-            "type": "string"
-        },
         "card_ids": {
             "type": "array"
         }

@@ -10,7 +10,6 @@ const deckNewSchema = require("../schemas/deckNew.json");
 const deckQuerySchema = require("../schemas/deckQuery.json");
 const deckUpdateSchema = require("../schemas/deckUpdate.json");
 
-// const router = new express.Router();
 const router = express.Router();
 
 router.post("/", async function (req, res, next) {
@@ -72,8 +71,10 @@ router.patch("/:id", async function (req, res, next) {
 });
 
 router.delete("/:id", async function (req, res, next) {
+    const deck = req.params.id;
     try {
-        await Deck.remove(req.params.id);
+        await Deck.remove(deck);
+        return res.json({ deck });
     } catch (err) {
         return next(err);
     }

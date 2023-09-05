@@ -2,12 +2,12 @@
 
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
-const { sqlForPartialUpdate } = require("../helpers/sql");
+// const { sqlForPartialUpdate } = require("../helpers/sql");
 
 
 class Deck {
 
-    static async create({ title, date_created, description }) {
+    static async create({ title, date_created, description, card_ids }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -25,7 +25,7 @@ class Deck {
              [
                 title,
                 date_created,
-                description
+                description,
              ],
         );
         return result.rows[0];
@@ -91,7 +91,7 @@ class Deck {
     //     const handleVarIdx = "$" + (values.length + 1);
 
     //     const querySql = `UPDATE decks
-    //                       set ${setCols}
+    //                       SET ${setCols}
     //                       WHERE id = ${handleVarIdx}
     //                       RETURNING id,
     //                                 title,
@@ -99,6 +99,7 @@ class Deck {
     //                                 description,
     //                                 card_ids`;
 
+    //     // UPDATE decks set card_ids = '{"e882c9f9-bf30-46b6-bedc-379d2c80e5cb", "0321b706-87b0-4bea-89d3-ec2e7252dc7c"}' WHERE id = 1 RETURNING id, title, date_created, description, card_ids;
     //     const result = await db.query(querySql, [...values, id]);
 
     //     if (!result.rows[0]) throw new NotFoundError(`No deck: ${id}`);
@@ -108,14 +109,18 @@ class Deck {
 
     static async update(deckId, cardIds) {
         const result = await db.query(`UPDATE decks
-                                       set card_ids
-                                       VALUES = (${cardIds})
+                                       SET card_ids = (ARRAY ${cardIds})
                                        WEHRE id = ${deckId}
                                        RETURNING id,
                                                  title,
                                                  date_created
                                                  description,
                                                  card_ids`);
+
+        const deck = result.rows[0];
+
+        if (!deck) throw new NotFoundError(`No deck: ${id}`);
+        
         return result.rows[0];
     }
 
@@ -123,12 +128,15 @@ class Deck {
         const result = await db.query(
             `DELETE
              FROM decks
-             WHERE title = $1
+             WHERE id = $1
              RETURNING id`,
         [id]);
-        const deck = result.rows[0];
 
+        const deck = result.rows[0];
+        
         if (!deck) throw new NotFoundError(`No deck: ${id}`);
+
+        return deck;
     }
 }
 

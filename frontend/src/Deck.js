@@ -11,11 +11,11 @@ function Deck() {
 
     const { id } = useParams();
 
-    let cardsToAdd = [];
-
     const [isLoading, setIsLoading] = useState(true)
     const [deck, setDeck] = useState();
-    const [cards, setCards] = useState(deck);
+    const [deckCards, setDeckCards] = useState(deck);
+    const [cardsToUpdate, setCardsToUpdate] = useState([]);
+    const [deckCardIds, setDeckCardIds] = useState([]);
 
     useEffect(() => {
         async function getDeckAndCards() {
@@ -23,17 +23,23 @@ function Deck() {
             // if (deck.response.status === 404){
             //     return navigate(`/decks`);
             // }
-            let cards = await Promise.all(deck.card_ids.map(card_id => {
+            let deckCards = await Promise.all(deck.card_ids.map(card_id => {
                 return DeckbuilderApi.getCard(card_id);
             }));
-            console.log(cards);
-            const deckCards = cards.map(card => {
+
+            let currentDeckCardIds = deckCards.map(card => {
+                card = card.id;
+                return card;
+            });
+
+            const newDeckCards = deckCards.map(card => {
                 card.side = 0;
                 return card;
             });
-            console.log(deckCards);
+            console.log(newDeckCards);
             setDeck(deck);
-            setCards(deckCards);
+            setDeckCards(newDeckCards);
+            setDeckCardIds(currentDeckCardIds);
             setIsLoading(false);
         }
         getDeckAndCards();
@@ -43,17 +49,39 @@ function Deck() {
         return ( <div>LOADING...</div>);
     }
 
-    // async function updateDeckCards(cardsToAdd) {
-    //     const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToAdd);
-    //     setCards(result);
-    //     return navigate (`/decks/${deck.id}`);
+    async function updateCards() {
+        deckCardIds.push('e882c9f9-bf30-46b6-bedc-379d2c80e5cb', '0321b706-87b0-4bea-89d3-ec2e7252dc7c');
+        setCardsToUpdate(deckCardIds);
+        const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToUpdate);
+        console.log(result);
+        // setDeckCardIds(cards);
+        // console.log(result);
+        // return navigate (`/decks/${deck.id}`);
+    }
+
+    // const createDeck = async () =>  {
+    //     const result = await DeckbuilderApi.createDeck(formData.title, formData.description);
+    //     console.log(result);
+    //     if (result.status === 201) {
+    //         return navigate(`/decks/${result.data.deck.id}`);
+    //     } else {
+    //         return alert(result.data?.error.message);
+    //     }
     // }
+
+    const deleteDeck = async () => {
+        const result = await DeckbuilderApi.deleteDeck(deck.id);
+        alert(`Deleted ${result}`);
+        return navigate('/decks');
+    }
 
     return (
         <div>
             <h2>{deck?.title}</h2>
             <p>{deck?.description}</p>
-            <CardsList cards={cards} />
+            <button onClick={updateCards}>Add Selected Cards To Deck</button>
+            <button onClick={deleteDeck}>Delete Deck</button>
+            <CardsList cards={deckCards} />
             <Cards />
         </div>
     );

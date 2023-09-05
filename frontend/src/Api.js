@@ -47,9 +47,9 @@ class DeckbuilderApi {
         return result.data.deck;
     }
 
-    static async updateDeckCards(id, card_ids) {
+    static async updateDeckCards(id, cardIds) {
         return axios.patch(`http://localhost:3001/decks/${id}`, {
-            card_ids: card_ids
+            card_ids: cardIds
         });
     }
 
@@ -60,8 +60,9 @@ class DeckbuilderApi {
     }
 
     static async deleteDeck(id) {
-        let result = await axios.delete(`http://localhost:3001/decks/${id}`)
-        return result.data.decks;
+        let result = await axios.delete(`http://localhost:3001/decks/${id}`);
+        console.log(result);
+        return result.data.deck;
     }
     
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CardsList from "./CardsList";
 import Cards from "./Cards";
 import DeckbuilderApi from "./Api";
@@ -7,27 +7,25 @@ import DeckbuilderApi from "./Api";
 
 function Deck() {
 
+    let navigate = useNavigate();
+
     const { id } = useParams();
+
+    let cardsToAdd = [];
 
     const [isLoading, setIsLoading] = useState(true)
     const [deck, setDeck] = useState();
     const [cards, setCards] = useState(deck);
 
-
     useEffect(() => {
         async function getDeckAndCards() {
             let deck = await DeckbuilderApi.getDeckById(id);
+            // if (deck.response.status === 404){
+            //     return navigate(`/decks`);
+            // }
             let cards = await Promise.all(deck.card_ids.map(card_id => {
                 return DeckbuilderApi.getCard(card_id);
             }));
-            // if (deck.card_ids == undefined) {
-            //     let cards = [];
-            //     return cards;
-            // } else {
-            //     let cards = await Promise.all(deck.card_ids.map(card_id => {
-            //         return DeckbuilderApi.getCard(card_id);
-            //     }));
-            // }
             console.log(cards);
             const deckCards = cards.map(card => {
                 card.side = 0;
@@ -44,13 +42,23 @@ function Deck() {
     if (isLoading) {
         return ( <div>LOADING...</div>);
     }
-    
-    // if (!deck) return <Navigate to="http://localhost:3000/decks" />;
 
-    // on submit delete deck 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault(); 
+    // async function cardSearch(query) {
+    //     let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
+    //     const newCards = result.data.data.map(card => {
+    //         card.side = 0;
+    //         return card;
+    //     });
+    //     console.log(newCards);
+    //     setCurrentCards(newCards);
+    //     return <CardsList cards={newCards} />
     // }
+
+    async function updateDeckCards(cardsToAdd) {
+        const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToAdd);
+        setCards(result);
+        return navigate (`/decks/${deck.id}`);
+    }
 
     return (
         <div>

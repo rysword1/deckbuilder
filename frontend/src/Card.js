@@ -9,6 +9,8 @@ function Card({ card}) {
         card.side = side;
         card.side === 0 ? setSide(1) : setSide(0);
     }
+
+    
     
     return (
         <li>

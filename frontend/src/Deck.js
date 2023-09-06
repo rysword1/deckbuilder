@@ -51,28 +51,27 @@ function Deck() {
 
     async function updateCards() {
         deckCardIds.push('e882c9f9-bf30-46b6-bedc-379d2c80e5cb', '0321b706-87b0-4bea-89d3-ec2e7252dc7c');
+        const updatedIds = deckCardIds.map(cardId => (`'${cardId}'`));
+        console.log(updatedIds);
         setCardsToUpdate(deckCardIds);
         const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToUpdate);
         console.log(result);
+        // return window.location.reload(true);
+        // setDeckCards(result);
         // setDeckCardIds(cards);
         // console.log(result);
         // return navigate (`/decks/${deck.id}`);
     }
 
-    // const createDeck = async () =>  {
-    //     const result = await DeckbuilderApi.createDeck(formData.title, formData.description);
-    //     console.log(result);
-    //     if (result.status === 201) {
-    //         return navigate(`/decks/${result.data.deck.id}`);
-    //     } else {
-    //         return alert(result.data?.error.message);
-    //     }
-    // }
 
     const deleteDeck = async () => {
         const result = await DeckbuilderApi.deleteDeck(deck.id);
-        alert(`Deleted ${result}`);
-        return navigate('/decks');
+        if (result.status === 404) {
+            return alert(result.data?.error.message);
+        } else {
+            alert(`Deleted deck id: ${result}`);
+            return navigate('/decks');
+        }
     }
 
     return (

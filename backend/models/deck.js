@@ -7,7 +7,7 @@ const { BadRequestError, NotFoundError } = require("../expressError");
 
 class Deck {
 
-    static async create({ title, date_created, description, card_ids }) {
+    static async create({ title, date_created, description }) {
         const duplicateCheck = await db.query(
             `SELECT title
              FROM decks
@@ -107,10 +107,35 @@ class Deck {
     //     return result.rows[0];
     // }
 
-    static async update(deckId, cardIds) {
+
+    // static async update(deckId, cardIds) {
+    //     const card1 = 'e882c9f9-bf30-46b6-bedc-379d2c80e5cb';
+    //     const card2 = '0321b706-87b0-4bea-89d3-ec2e7252dc7c';
+    //     const card3 = '5909e77e-a930-4713-bca4-c6b265238c17';
+    //     cardIds = [];
+    //     cardIds.push(card1, card2, card3);
+    //     const updatedIds = cardIds.map(cardId => (`'${cardId}'`));
+    //     console.log(updatedIds.join(', '));
+    //     const result = await db.query(`UPDATE decks
+    //                                    SET card_ids = (ARRAY [${updatedIds}])
+    //                                    WHERE id = ${deckId}
+    //                                    RETURNING id,
+    //                                              title,
+    //                                              date_created
+    //                                              description,
+    //                                              card_ids`);
+
+    //     const deck = result.rows[0];
+
+    //     if (!deck) throw new NotFoundError(`No deck: ${id}`);
+        
+    //     return result.rows[0];
+    // }
+
+    static async update({ deckId, cardIds }) {
         const result = await db.query(`UPDATE decks
-                                       SET card_ids = (ARRAY ${cardIds})
-                                       WEHRE id = ${deckId}
+                                       SET card_ids = (ARRAY [${cardIds}])
+                                       WHERE id = ${deckId}
                                        RETURNING id,
                                                  title,
                                                  date_created
@@ -123,6 +148,7 @@ class Deck {
         
         return result.rows[0];
     }
+
 
     static async remove(id) {
         const result = await db.query(

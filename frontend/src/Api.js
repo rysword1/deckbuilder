@@ -48,8 +48,14 @@ class DeckbuilderApi {
     }
 
     static async updateDeckCards(id, cardIds) {
+        cardIds = ['e882c9f9-bf30-46b6-bedc-379d2c80e5cb', '0321b706-87b0-4bea-89d3-ec2e7252dc7c']
+        cardIds.join(', ');
         return axios.patch(`http://localhost:3001/decks/${id}`, {
-            card_ids: cardIds
+                card_ids: [cardIds]
+        }).then((result) => {
+            return result;
+        }).catch((err) => {
+            return err.response;
         });
     }
 
@@ -61,7 +67,6 @@ class DeckbuilderApi {
 
     static async deleteDeck(id) {
         let result = await axios.delete(`http://localhost:3001/decks/${id}`);
-        console.log(result);
         return result.data.deck;
     }
     

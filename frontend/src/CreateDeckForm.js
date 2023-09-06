@@ -21,7 +21,6 @@ function CreateDeckForm() {
 
     const createDeck = async () =>  {
         const result = await DeckbuilderApi.createDeck(formData.title, formData.description);
-        console.log(result);
         if (result.status === 201) {
             return navigate(`/decks/${result.data.deck.id}`);
         } else {

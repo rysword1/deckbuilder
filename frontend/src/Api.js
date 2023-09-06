@@ -47,11 +47,10 @@ class DeckbuilderApi {
         return result.data.deck;
     }
 
-    static async updateDeckCards(id, cardIds) {
-        cardIds = ['e882c9f9-bf30-46b6-bedc-379d2c80e5cb', '0321b706-87b0-4bea-89d3-ec2e7252dc7c']
-        cardIds.join(', ');
-        return axios.patch(`http://localhost:3001/decks/${id}`, {
-                card_ids: [cardIds]
+    static async updateDeckCards(id, deckCardIds) {
+        console.log(id, deckCardIds);
+        return axios.put(`http://localhost:3001/decks/${id}`, { 
+            card_ids: deckCardIds
         }).then((result) => {
             return result;
         }).catch((err) => {

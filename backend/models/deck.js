@@ -2,7 +2,6 @@
 
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
-// const { sqlForPartialUpdate } = require("../helpers/sql");
 
 
 class Deck {
@@ -78,73 +77,21 @@ class Deck {
         return deck;
     }
 
-    // static async update(id, data) {
-    //     const { setCols, values } = sqlForPartialUpdate(
-    //         data,
-    //         {
-    //             title: "title",
-    //             date_created: "date_created",
-    //             description: "description",
-    //             card_ids: []
-    //         });
+
+    static async update(deckId, deckCardIds) {
         
-    //     const handleVarIdx = "$" + (values.length + 1);
+        let sqlCardIdString = "'{" + deckCardIds.card_ids.join(",") + "}'";
 
-    //     const querySql = `UPDATE decks
-    //                       SET ${setCols}
-    //                       WHERE id = ${handleVarIdx}
-    //                       RETURNING id,
-    //                                 title,
-    //                                 date_created,
-    //                                 description,
-    //                                 card_ids`;
-
-    //     // UPDATE decks set card_ids = '{"e882c9f9-bf30-46b6-bedc-379d2c80e5cb", "0321b706-87b0-4bea-89d3-ec2e7252dc7c"}' WHERE id = 1 RETURNING id, title, date_created, description, card_ids;
-    //     const result = await db.query(querySql, [...values, id]);
-
-    //     if (!result.rows[0]) throw new NotFoundError(`No deck: ${id}`);
-
-    //     return result.rows[0];
-    // }
-
-
-    // static async update(deckId, cardIds) {
-    //     const card1 = 'e882c9f9-bf30-46b6-bedc-379d2c80e5cb';
-    //     const card2 = '0321b706-87b0-4bea-89d3-ec2e7252dc7c';
-    //     const card3 = '5909e77e-a930-4713-bca4-c6b265238c17';
-    //     cardIds = [];
-    //     cardIds.push(card1, card2, card3);
-    //     const updatedIds = cardIds.map(cardId => (`'${cardId}'`));
-    //     console.log(updatedIds.join(', '));
-    //     const result = await db.query(`UPDATE decks
-    //                                    SET card_ids = (ARRAY [${updatedIds}])
-    //                                    WHERE id = ${deckId}
-    //                                    RETURNING id,
-    //                                              title,
-    //                                              date_created
-    //                                              description,
-    //                                              card_ids`);
-
-    //     const deck = result.rows[0];
-
-    //     if (!deck) throw new NotFoundError(`No deck: ${id}`);
-        
-    //     return result.rows[0];
-    // }
-
-    static async update({ deckId, cardIds }) {
+        console.log(sqlCardIdString);
         const result = await db.query(`UPDATE decks
-                                       SET card_ids = (ARRAY [${cardIds}])
+                                       SET card_ids = ${sqlCardIdString}
                                        WHERE id = ${deckId}
-                                       RETURNING id,
-                                                 title,
-                                                 date_created
-                                                 description,
-                                                 card_ids`);
+                                       RETURNING *`);
+        console.log(result);
 
         const deck = result.rows[0];
 
-        if (!deck) throw new NotFoundError(`No deck: ${id}`);
+        if (!deck) throw new NotFoundError(`No deck: ${deckId}`);
         
         return result.rows[0];
     }

@@ -54,7 +54,7 @@ router.get("/:id", async function (req, res, next) {
     }
 });
 
-router.patch("/:id", async function (req, res, next) {
+router.put("/:id", async function (req, res, next) {
     try {
         const updatedDeck = req.body;
         const validator = jsonschema.validate(updatedDeck, deckUpdateSchema);
@@ -62,7 +62,6 @@ router.patch("/:id", async function (req, res, next) {
             const errs = validator.errors.map(e => e.stack);
             throw new BadRequestError(errs);
         }
-
         const deck = await Deck.update(req.params.id, updatedDeck);
         return res.json({ deck });
     } catch (err) {

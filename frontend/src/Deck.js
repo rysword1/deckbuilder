@@ -49,18 +49,12 @@ function Deck() {
         return ( <div>LOADING...</div>);
     }
 
-    async function updateCards() {
+    const updateCards = async () => {
+        console.log('before updating cards', deckCardIds);
         deckCardIds.push('e882c9f9-bf30-46b6-bedc-379d2c80e5cb', '0321b706-87b0-4bea-89d3-ec2e7252dc7c');
-        const updatedIds = deckCardIds.map(cardId => (`'${cardId}'`));
-        console.log(updatedIds);
-        setCardsToUpdate(deckCardIds);
-        const result = await DeckbuilderApi.updateDeckCards(deck.id, cardsToUpdate);
-        console.log(result);
-        // return window.location.reload(true);
-        // setDeckCards(result);
-        // setDeckCardIds(cards);
-        // console.log(result);
-        // return navigate (`/decks/${deck.id}`);
+        const result = await DeckbuilderApi.updateDeckCards(deck.id, deckCardIds);
+        console.log('after updating cards', result);
+        return window.location.reload(true);
     }
 
 

@@ -1,3 +1,7 @@
+html {
+    background-color: black;
+}
+
 .App {
     background-color: black;
     color: white;
@@ -34,25 +38,9 @@ button {
     transition: background-color .17s ease,color .17s ease;
 }
 
-.Welcome {
-    text-align: center;
-    color: white;
-}
-
-.Decrease{
-    left: 20px;
-}
-
-.Count{
-    right: 30px;
-}
-
 .Counter {
+    position: relative;
     text-align: center;
-}
-
-.Increase {
-    left: 40px;
 }
 
 .Delete {
@@ -73,8 +61,9 @@ button {
 }
 
 .Card {
-    position: flex;
-    right: 200px;
+    position: relative;
+    left: 800px;
+    bottom: 500px;
 }
 
 .Card.CardInfo{

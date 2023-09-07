@@ -3,7 +3,14 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter } from 'react-router-dom';
 import DeckbuilderApi from './Api';
 import AppRoutes from './AppRoutes';
-import NavBar from './NavBar';
+import NavagationBar from './NavagationBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import {
+//   NavBar,
+//   NavItem,
+//   NavLink,
+//   Nav
+// } from 'reactstrap';
 
 
 function App() {
@@ -33,7 +40,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <NavagationBar />
         <AppRoutes randCard={randCard} decks={decks} randDeck={randDeck} />
       </BrowserRouter>
     </div>

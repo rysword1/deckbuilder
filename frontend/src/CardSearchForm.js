@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, Select, Option } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 
 function CardSearchForm({ cardSearch }) {
@@ -226,7 +226,7 @@ function CardSearchForm({ cardSearch }) {
             <Label htmlFor='or'>Including These</Label>
         </FormGroup>
             
-            <Button>Search</Button>
+            <button>Search</button>
         </Form>
     );
 }

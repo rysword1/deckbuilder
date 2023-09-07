@@ -13,8 +13,10 @@ function Cards({ deckCards, updateDeckCards }) {
         let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
         const newCards = result.data.data.map(card => {
             card.side = 0;
-            const deckCard = deckCards.find(c => c.id === card.id);
-            card.count = deckCard ? deckCard.count : 0;
+            if(deckCards) {
+                const deckCard = deckCards.find(c => c.id === card.id);
+                card.count = deckCard ? deckCard.count : 0;
+            }
             return card;
         });
         setCurrentCards(newCards);

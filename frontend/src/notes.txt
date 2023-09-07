@@ -1,3 +1,2 @@
 throttle the amount of cards in a deck to 5 - each deck in database can only have 5 cards
-figure out how to add cards to a deck
 style the site a little with spacing and stuff dont go overboard with this as functionality is more important

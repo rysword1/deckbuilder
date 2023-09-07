@@ -48,7 +48,6 @@ class DeckbuilderApi {
     }
 
     static async updateDeckCards(id, deckCardIds) {
-        console.log(id, deckCardIds);
         return axios.put(`http://localhost:3001/decks/${id}`, { 
             card_ids: deckCardIds
         }).then((result) => {
@@ -57,7 +56,6 @@ class DeckbuilderApi {
             return err.response;
         });
     }
-
 
     static async getRandDeck(rand) {
         let result = await axios.get(`http://localhost:3001/decks/${rand}`);

@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-// import Counter from './Counter';
+import Counter from './Counter';
 
-function Card({ card }) {
+function Card({ card, updateDeckCards }) {
 
     const [side, setSide] = useState(0);
+    const [count, setCount] = useState(card.count);
 
     function flip() {
         card.side = side;
         card.side === 0 ? setSide(1) : setSide(0);
     }
 
-    function handleClick() {
-        console.log(card.id);
-        return card.id;
+    function updateCount(updatedCount) {
+        setCount(updatedCount);
+        card.count = updatedCount;
+        updateDeckCards(card);
     }
     
     return (
@@ -26,8 +28,7 @@ function Card({ card }) {
                     <button onClick={flip}>Flip</button>
                 </div>
             }
-            <button onClick={handleClick}>Select</button>
-            {/* <Counter /> */}
+            <Counter count={count} updateCount={updateCount} />
         </li>
     );
 }

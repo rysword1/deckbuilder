@@ -4,7 +4,7 @@ import CardsList from './CardsList';
 import axios from 'axios';
 
 
-function Cards() {
+function Cards({ deckCards, updateDeckCards }) {
 
     const [currentCards, setCurrentCards] = useState([]);
     
@@ -12,18 +12,18 @@ function Cards() {
         let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
         const newCards = result.data.data.map(card => {
             card.side = 0;
+            const deckCard = deckCards.find(c => c.id === card.id);
+            card.count = deckCard ? deckCard.count : 0;
             return card;
         });
-        console.log(newCards);
         setCurrentCards(newCards);
-        return <CardsList cards={newCards} />
     }
 
     return (
         <div>
             <h3>Search For Cards!</h3>
             <CardSearchForm cardSearch={cardSearch} />
-            <CardsList cards={currentCards} />
+            <CardsList cards={currentCards} updateDeckCards={updateDeckCards} />
         </div>
     );
 }

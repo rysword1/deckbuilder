@@ -27,8 +27,6 @@ function CardSearchForm({ cardSearch }) {
         const {value, checked} = e.target;
         const {colors} = formData;
 
-        console.log(`${value} is ${checked}`);
-
         if (checked) {
             setFormData({
                 ...formData,
@@ -46,8 +44,6 @@ function CardSearchForm({ cardSearch }) {
         const {value, checked} = e.target;
         const {types} = formData;
 
-        console.log(`${value} is ${checked}`);
-
         if (checked) {
             setFormData({
                 ...formData,
@@ -63,7 +59,6 @@ function CardSearchForm({ cardSearch }) {
 
     // look at his function and decide what would be better if colorOptions is not an array
     const handleColorOptions = (e) => {
-        console.log(`selected ${e.target.value}`);
         setFormData({
             ...formData,
             colorOptions: e.target.value
@@ -73,8 +68,6 @@ function CardSearchForm({ cardSearch }) {
     const handleOrChecks = (e) => {
         const {value, checked} = e.target;
         formData.or = checked;
-
-        console.log(`${value} is ${checked}`);
 
         setFormData(formData);
     }
@@ -89,10 +82,8 @@ function CardSearchForm({ cardSearch }) {
             if (formData.types.length > 0) {
                 if (formData.or) {
                     query += `+(type:${formData.types.join('+OR+type:')})`;
-                    console.log(query);
                 } else {
                     query += `+(type:${formData.types.join('+type:')})`;
-                    console.log(query);
                 }
             }
 
@@ -105,8 +96,6 @@ function CardSearchForm({ cardSearch }) {
                     query += `+color:${formData.colors.join("")}`;
                 }
             }
-
-        console.log(query);
         cardSearch(query);
         query = "?q=";
     }

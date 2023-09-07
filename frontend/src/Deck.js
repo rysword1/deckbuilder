@@ -14,8 +14,6 @@ function Deck() {
     const [isLoading, setIsLoading] = useState(true)
     const [deck, setDeck] = useState();
     const [deckCards, setDeckCards] = useState(deck);
-    const [cardsToUpdate, setCardsToUpdate] = useState([]);
-    const [deckCardIds, setDeckCardIds] = useState([]);
 
     useEffect(() => {
         async function getDeckAndCards() {
@@ -23,23 +21,28 @@ function Deck() {
             // if (deck.response.status === 404){
             //     return navigate(`/decks`);
             // }
-            let deckCards = await Promise.all(deck.card_ids.map(card_id => {
-                return DeckbuilderApi.getCard(card_id);
-            }));
 
-            let currentDeckCardIds = deckCards.map(card => {
-                card = card.id;
-                return card;
-            });
 
-            const newDeckCards = deckCards.map(card => {
-                card.side = 0;
-                return card;
-            });
-            console.log(newDeckCards);
+            let cardCount = {};
+            for(const card_id of deck.card_ids) {
+                if(cardCount[card_id]) {
+                    cardCount[card_id]++;
+                } else {
+                    cardCount[card_id] = 1;
+                }
+            }
+
+            let deckCards = [];
+
+            for(const card_id in cardCount) {
+                const card = await DeckbuilderApi.getCard(card_id);
+                card.count = cardCount[card_id];
+                card.side = 0
+                deckCards.push(card);
+            }
+
             setDeck(deck);
-            setDeckCards(newDeckCards);
-            setDeckCardIds(currentDeckCardIds);
+            setDeckCards(deckCards);
             setIsLoading(false);
         }
         getDeckAndCards();
@@ -49,11 +52,25 @@ function Deck() {
         return ( <div>LOADING...</div>);
     }
 
+    const updateDeckCards = (card) => {
+        const originalCard = deckCards.find(c => c.id === card.id);
+        if(originalCard) {
+            originalCard.count = card.count;
+        } else {
+            deckCards.push(card);
+        }
+    }
+
     const updateCards = async () => {
-        console.log('before updating cards', deckCardIds);
-        deckCardIds.push('e882c9f9-bf30-46b6-bedc-379d2c80e5cb', '0321b706-87b0-4bea-89d3-ec2e7252dc7c');
-        const result = await DeckbuilderApi.updateDeckCards(deck.id, deckCardIds);
-        console.log('after updating cards', result);
+        const newDeckCards = [];
+        for(const card of deckCards) {
+            if(card.count > 0) {
+                for(let i = 0; i < card.count; i++) {
+                    newDeckCards.push(card.id);
+                }
+            }
+        }
+        await DeckbuilderApi.updateDeckCards(deck.id, newDeckCards);
         return window.location.reload(true);
     }
 
@@ -74,8 +91,8 @@ function Deck() {
             <p>{deck?.description}</p>
             <button onClick={updateCards}>Add Selected Cards To Deck</button>
             <button onClick={deleteDeck}>Delete Deck</button>
-            <CardsList cards={deckCards} />
-            <Cards />
+            <CardsList cards={deckCards} updateDeckCards={updateDeckCards} />
+            <Cards updateDeckCards={updateDeckCards} deckCards={deckCards} />
         </div>
     );
 }

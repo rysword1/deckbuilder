@@ -1,4 +1,7 @@
-# deckbuilder
+# Deckbuilder
+
+## Description
+This is a deckbuilder for the card game Magic The Gathering.
 
 project proposal
 https://docs.google.com/document/d/1SHwrTjwnir2ATbJ5XQzNQQm8jWbkeN4LOOX1bI5mo-g/edit

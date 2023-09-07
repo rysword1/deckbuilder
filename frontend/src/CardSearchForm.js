@@ -106,7 +106,7 @@ function CardSearchForm({ cardSearch }) {
     <Form onSubmit={handleSubmit}>
         
         <FormGroup>
-            <Label htmlFor="name">Name: </Label>
+            <h5>Name:</h5>
             <Input id="name"
                 type="text"
                 name="name"
@@ -116,44 +116,46 @@ function CardSearchForm({ cardSearch }) {
         </FormGroup>
 
         <FormGroup>
-            <Label htmlFor="colors">Colors: </Label>
+            <h5>Colors: </h5>
 
+            <Label htmlFor='W' check>White:</Label>
             <Input  name="colors"
                 type="checkbox"
                 value="W"
                 onChange={handleColorsChecks} />
-            <Label htmlFor='W'>White</Label>
 
+            <Label htmlFor='U' check>Blue:</Label>
             <Input name="colors"
                 type="checkbox"
                 value="U"
                 onChange={handleColorsChecks} />
-            <Label htmlFor='U'>Blue</Label>
 
+            <Label htmlFor='B' check>Black:</Label>
             <Input name="colors"
                 type="checkbox"
                 value="B"
                 onChange={handleColorsChecks} />
-            <Label htmlFor='B'>Black</Label>
+            
 
+            <Label htmlFor='R' check>Red:</Label>
             <Input name="colors"
                 type="checkbox"
                 value="R"
                 onChange={handleColorsChecks} />
-            <Label htmlFor='R'>Red</Label>
 
+            <Label htmlFor="G" check>Green:</Label> 
             <Input name="colors"
                 type="checkbox"
                 value="G"
                 onChange={handleColorsChecks} />
-            <Label htmlFor="G">Green</Label> 
 
+            <Label htmlFor="C" checkf>Colorless:</Label>
             <Input name="colors"
                 type="checkbox"
                 value="C"
                 onChange={handleColorsChecks} />
-            <Label htmlFor="C">Colorless</Label>
-
+            
+            <Label>Color Options:</Label>
             <select name="color-options" id="color-options" onChange={handleColorOptions}>
                 <option value="">---Select an Option---</option>
                 <option value="only">Only</option>
@@ -163,67 +165,67 @@ function CardSearchForm({ cardSearch }) {
         </FormGroup>
 
         <FormGroup>
-            <Label htmlFor="types">Type: </Label>
+            <h5 htmlFor="types">Type:</h5>
 
+            <Label htmlFor='Artifact'>Artifact:</Label>
             <Input name="types"
                 type="checkbox"
                 value="artifact"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Artifact'>Artifact</Label>
 
+            <Label htmlFor='Creature'>Creature:</Label>
             <Input name="types"
                 type="checkbox"
                 value="creature"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Creature'>Creature</Label>
 
+            <Label htmlFor='Enchantment'>Enchantment:</Label>
             <Input name="types"
                 type="checkbox"
                 value="enchantment"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Enchantment'>Enchantment</Label>
 
+            <Label htmlFor='Land'>Land:</Label>
             <Input name="types"
                 type="checkbox"
                 value="land"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Land'>Land</Label>
 
+            <Label htmlFor='BasicLand'>Basic Land:</Label>
             <Input name="types"
                 type="checkbox"
                 value="basic"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='BasicLand'>Basic Land</Label>
 
+            <Label htmlFor='Legendary'>Legendary:</Label>
             <Input name="types"
                 type="checkbox"
                 value="legendary"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Legendary'>Legendary</Label>
 
+            <Label htmlFor='Planeswalker'>Planeswalker:</Label>
             <Input name="types"
                 type="checkbox"
                 value="planeswalker"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Planeswalker'>Planeswalker</Label>
 
+            <Label htmlFor='Sorcery'>Sorcery:</Label>
             <Input name="types"
                 type="checkbox"
                 value="sorcery"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Sorcery'>Sorcery</Label>
 
+            <Label htmlFor='Instant'>Instant:</Label>
             <Input name="types"
                 type="checkbox"
                 value="instant"
                 onChange={handleTypesChecks} />
-            <Label htmlFor='Instant'>Instant</Label>
 
+            <Label htmlFor='or'>Including These:</Label>
             <Input name="or"
                 type="checkbox"
                 value="or"
                 onChange={handleOrChecks} />
-            <Label htmlFor='or'>Including These</Label>
         </FormGroup>
             
             <button>Search</button>

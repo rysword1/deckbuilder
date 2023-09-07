@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeckbuilderApi from "./Api";
-import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { Form, FormGroup, Label, Input} from 'reactstrap';
 
 function CreateDeckForm() {
 
@@ -36,10 +36,11 @@ function CreateDeckForm() {
 
     return(
         <div>
+            <h1>Create a Deck!</h1>
             <Form onSubmit={handleSubmit}>
 
                 <FormGroup>
-                    <Label htmlFor="title">Title: </Label>
+                    <h5>Title: </h5>
                     <Input id="title"
                         type="text"
                         name="title"
@@ -49,7 +50,7 @@ function CreateDeckForm() {
                 </FormGroup>
 
                 <FormGroup>
-                    <Label htmlFor="description">Description: </Label>
+                    <h5>Description: </h5>
 
                     <Input id="description"
                         type="text"
@@ -59,7 +60,7 @@ function CreateDeckForm() {
                         onChange={handleChange} />
                 </FormGroup>
 
-                <Button>Create Deck</Button>
+                <button>Create Deck</button>
             </Form>
         </div>
     );

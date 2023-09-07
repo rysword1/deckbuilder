@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { List, ListGroupItem, ListGroupItemHeading } from 'reactstrap';
 import { Link } from "react-router-dom";
 import DeckbuilderApi from "./Api";
 
@@ -18,16 +19,14 @@ function Decks({ decks }) {
     return (
         <div>
             <h1>View These Decks!</h1>
-            <ul>
+            <List>
                 {currentDecks.map(deck => (
                         <Link to={`/decks/${deck.id}`} key={deck.id}>
-                            <li>
-                                <h3>{deck.title}</h3>
-                                <p>{deck.description}</p>
-                            </li>
+                            <ListGroupItemHeading>{deck.title}</ListGroupItemHeading>
+                            <ListGroupItem>{deck.description}</ListGroupItem>
                         </Link>
                 ))}
-            </ul>
+            </List>
         </div>
     );
 }

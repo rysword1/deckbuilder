@@ -1,12 +1,12 @@
 import React from "react";
-import Card from "./Card";
+import SingleCard from "./SingleCard";
 
 function CardsList({ cards, updateDeckCards }) {
 
     return(
         <ol>
             {cards?.map(card => (
-                <Card card={card} key={card.id} updateDeckCards={updateDeckCards} />
+                <SingleCard card={card} key={card.id} updateDeckCards={updateDeckCards} />
             ))}
         </ol>
     );

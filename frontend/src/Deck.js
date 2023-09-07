@@ -42,7 +42,8 @@ function Deck() {
             setIsLoading(false);
         }
         getDeckAndCards();
-    }, []);
+    });
+
 
     if (isLoading) {
         return ( <div>LOADING...</div>);

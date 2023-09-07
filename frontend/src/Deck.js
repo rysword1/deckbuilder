@@ -29,7 +29,6 @@ function Deck() {
             }
 
             let deckCards = [];
-
             for(const card_id in cardCount) {
                 const card = await DeckbuilderApi.getCard(card_id);
                 card.count = cardCount[card_id];

@@ -17,6 +17,7 @@ function Decks({ decks }) {
     
     return (
         <div>
+            <h1>View These Decks!</h1>
             <ul>
                 {currentDecks.map(deck => (
                         <Link to={`/decks/${deck.id}`} key={deck.id}>

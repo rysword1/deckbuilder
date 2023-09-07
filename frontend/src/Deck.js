@@ -87,12 +87,16 @@ function Deck() {
 
     return (
         <div>
-            <h2>{deck?.title}</h2>
+            <h1>{deck?.title}</h1>
             <p>{deck?.description}</p>
-            <button onClick={updateCards}>Add Selected Cards To Deck</button>
-            <button onClick={deleteDeck}>Delete Deck</button>
             <CardsList cards={deckCards} updateDeckCards={updateDeckCards} />
             <Cards updateDeckCards={updateDeckCards} deckCards={deckCards} />
+            <div className="FooterDiv">
+                <footer className="Footer">
+                    <button className="AddCards" onClick={updateCards}>Add Selected Cards To Deck</button>
+                    <button className="Delete" onClick={deleteDeck}>Delete Deck</button>
+                </footer>
+            </div>
         </div>
     );
 }

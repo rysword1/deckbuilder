@@ -28,7 +28,7 @@ function Card({ card, updateDeckCards }) {
                 </div> :
                 <div>
                     <img src={card.card_faces[side].image_uris.normal} alt={card.name} />
-                    <button onClick={flip}>Flip</button>
+                    <button className="Flip" onClick={flip}>Flip</button>
                 </div>
             }
             <Counter count={count} updateCount={updateCount} />

@@ -20,7 +20,7 @@ function Counter ({ count, updateCount }) {
     return (
         <div>
             <button onClick={decrease}>-</button>
-            <span>{count}</span>
+            <span className="Counter">{count}</span>
             <button onClick={increase}>+</button>
         </div>
     );

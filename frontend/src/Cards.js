@@ -24,7 +24,7 @@ function Cards({ deckCards, updateDeckCards }) {
 
     return (
         <div>
-            <h3 className='SearchHeader'>Search For Cards!</h3>
+            <h1 className='SearchHeader'>Search For Cards!</h1>
             <CardSearchForm cardSearch={cardSearch} />
             <CardsList cards={currentCards} updateDeckCards={updateDeckCards} />
         </div>

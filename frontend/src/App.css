@@ -4,6 +4,14 @@
 }
 
 h1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: white;
+}
+
+p {
+    padding-bottom: 25px;
     text-align: center;
     color: white;
 }
@@ -31,13 +39,21 @@ button {
     color: white;
 }
 
-/* .SearchHeader {
-    text-align: center;
-    color: white;
-} */
+.Decrease{
+    left: 20px;
+}
 
-/* .FooterDiv {
-} */
+.Count{
+    right: 30px;
+}
+
+.Counter {
+    text-align: center;
+}
+
+.Increase {
+    left: 40px;
+}
 
 .Delete {
     position: fixed;
@@ -56,7 +72,18 @@ button {
     bottom: 0;
 }
 
+.Card {
+    position: flex;
+    right: 200px;
+}
 
-/* .Nav {
-    background-color: #78909C;
-} */
+.Card.CardInfo{
+    position: fixed;
+    right: 200px;
+}
+
+Label {
+    margin-right: 5px;
+    margin-left: 20px;
+    display: inline-block;
+}

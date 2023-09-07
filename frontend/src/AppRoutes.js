@@ -12,10 +12,7 @@ function AppRoutes({ randCard, decks, randDeck }) {
         <div>
             <Routes>
                 <Route exact path="/cards" element={<Cards />} />
-                {/* <Route exact path="cards/:id" elemtnt={<Card card={card} />} /> */}
-                {/* if i want to show a specific card, the /card/${card-id}/ */}
 
-                {/* <Route exact path="/decks/:id" element={<Deck decks={decks} cantFind="/decks" />} /> */}
                 <Route exact path="/decks/:id" element={<Deck decks={decks} randDeck={randDeck} />} />
 
                 <Route exact path="/decks" element={<Decks decks={decks}/>} />

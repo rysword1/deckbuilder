@@ -18,4 +18,4 @@ PostgreSQL,
 ExpressJS,
 ReactJS,
 Javascript,
-nodeJS,
+nodeJS

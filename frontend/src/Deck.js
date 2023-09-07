@@ -18,10 +18,6 @@ function Deck() {
     useEffect(() => {
         async function getDeckAndCards() {
             let deck = await DeckbuilderApi.getDeckById(id);
-            // if (deck.response.status === 404){
-            //     return navigate(`/decks`);
-            // }
-
 
             let cardCount = {};
             for(const card_id of deck.card_ids) {

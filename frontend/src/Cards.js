@@ -10,8 +10,10 @@ function Cards({ deckCards, updateDeckCards }) {
     const [currentCards, setCurrentCards] = useState([]);
     
     async function cardSearch(query) {
-        let result = await axios.get(`https://api.scryfall.com/cards/search${query}`);
-        const newCards = result.data.data.map(card => {
+        let newCards;
+        await axios.get(`https://api.scryfall.com/cards/search${query}`)
+        .then((result) => {
+            newCards = result.data.data.map(card => {
             card.side = 0;
             if(deckCards) {
                 const deckCard = deckCards.find(c => c.id === card.id);
@@ -20,6 +22,8 @@ function Cards({ deckCards, updateDeckCards }) {
             return card;
         });
         setCurrentCards(newCards);
+        }).catch ((err) => 
+            alert("Please enter valid search options."));
     }
 
     return (

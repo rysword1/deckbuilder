@@ -23,7 +23,7 @@ function Cards({ deckCards, updateDeckCards }) {
     return (
         <div>
             <h3 className='SearchHeader'>Search For Cards!</h3>
-            <CardSearchForm updateDeckCards={updateDeckCards} cardSearch={cardSearch} />
+            <CardSearchForm cardSearch={cardSearch} />
             <CardsList cards={currentCards} updateDeckCards={updateDeckCards} />
         </div>
     );

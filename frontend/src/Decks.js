@@ -22,7 +22,7 @@ function Decks({ decks }) {
             <List>
                 {currentDecks.map(deck => (
                         <Link to={`/decks/${deck.id}`} key={deck.id}>
-                            <ListGroupItemHeading>{deck.title}</ListGroupItemHeading>
+                            <ListGroupItemHeading tag='h2' >{deck.title}</ListGroupItemHeading>
                             <ListGroupItem>{deck.description}</ListGroupItem>
                         </Link>
                 ))}

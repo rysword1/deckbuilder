@@ -19,9 +19,9 @@ function Counter ({ count, updateCount }) {
 
     return (
         <div>
-            <button className="Decrease" onClick={decrease}>-</button>
-            <span className="Count">{count}</span>
-            <button className="Count" onClick={increase}>+</button>
+            <button onClick={decrease}>-</button>
+            <span>{count}</span>
+            <button onClick={increase}>+</button>
         </div>
     );
 }

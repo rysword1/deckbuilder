@@ -23,15 +23,17 @@ function SingleCard({ card, updateDeckCards }) {
     return (
         <ListGroupItem>
             {card.image_uris ?
-                <div>
-                    <img src={card.image_uris.normal} alt={card.name} /> 
-                    <Counter count={count} updateCount={updateCount} />
+                <div >
+                    <img src={card.image_uris.normal} alt={card.name} />
+                    <div className='Counter'>
+                        <Counter count={count} updateCount={updateCount} />
+                    </div>
                     <span className='Card'>
                         <Card body
                                 color="dark"
                                 inverse
                                 style={{
-                                    width: '18rem'
+                                    width: '30rem'
                                 }}
                         >
                             <CardBody>
@@ -51,16 +53,18 @@ function SingleCard({ card, updateDeckCards }) {
                         </Card>
                     </span>
                 </div> :
-                <div className='Card'>
+                <div>
                     <img src={card.card_faces[side].image_uris.normal} alt={card.name} />
                     <button className="Flip" onClick={flip}>Flip</button>
-                    <Counter count={count} updateCount={updateCount} />
+                    <div className='Counter'>
+                        <Counter count={count} updateCount={updateCount} />
+                    </div>
                     <span className='Card'>
                         <Card body
                                 color="dark"
                                 inverse
                                 style={{
-                                    width: '18rem'
+                                    width: '20rem'
                                 }}
                         >
                             <CardBody>

@@ -15,7 +15,7 @@ https://app.diagrams.net/#G1YcsSIoJPqGPFV4IGSMG0TuCtwpcTSVhJ
 
 ## Technology Stack
 PostgreSQL,
-nodeJS,
 ExpressJS,
 ReactJS,
-Javascript
+Javascript,
+nodeJS,

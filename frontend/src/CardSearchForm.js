@@ -67,7 +67,7 @@ function CardSearchForm({ cardSearch }) {
     }
 
     const handleOrChecks = (e) => {
-        const {value, checked} = e.target;
+        const { checked } = e.target;
         formData.or = checked;
 
         setFormData(formData);

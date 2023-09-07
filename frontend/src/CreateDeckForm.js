@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeckbuilderApi from "./Api";
-import { Form, FormGroup, Label, Input} from 'reactstrap';
+import { Form, FormGroup, Input} from 'reactstrap';
 
 function CreateDeckForm() {
 

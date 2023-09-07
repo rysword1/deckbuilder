@@ -1,7 +1,6 @@
 import React from "react";
-import { List, ListGroup, ListGroupItem, ListGroupItemHeading } from 'reactstrap';
+import { List, ListGroupItem, ListGroupItemHeading } from 'reactstrap';
 import SingleCard from "./SingleCard";
-import './App.css';
 import { Link } from "react-router-dom";
 
 function Home({ randCard, randDeck }) {

@@ -1,4 +1,3 @@
-import './App.css'
 import React, { useState } from 'react';
 import CardSearchForm from './CardSearchForm';
 import CardsList from './CardsList';

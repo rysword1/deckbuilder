@@ -5,12 +5,6 @@ import DeckbuilderApi from './Api';
 import AppRoutes from './AppRoutes';
 import NavagationBar from './NavagationBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import {
-//   NavBar,
-//   NavItem,
-//   NavLink,
-//   Nav
-// } from 'reactstrap';
 
 
 function App() {
@@ -38,7 +32,7 @@ function App() {
 }
 
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
         <NavagationBar />
         <AppRoutes randCard={randCard} decks={decks} randDeck={randDeck} />

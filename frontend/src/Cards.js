@@ -1,3 +1,4 @@
+import './App.css'
 import React, { useState } from 'react';
 import CardSearchForm from './CardSearchForm';
 import CardsList from './CardsList';
@@ -21,8 +22,8 @@ function Cards({ deckCards, updateDeckCards }) {
 
     return (
         <div>
-            <h3>Search For Cards!</h3>
-            <CardSearchForm cardSearch={cardSearch} />
+            <h3 className='SearchHeader'>Search For Cards!</h3>
+            <CardSearchForm updateDeckCards={updateDeckCards} cardSearch={cardSearch} />
             <CardsList cards={currentCards} updateDeckCards={updateDeckCards} />
         </div>
     );

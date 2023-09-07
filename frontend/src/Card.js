@@ -3,6 +3,8 @@ import Counter from './Counter';
 
 function Card({ card, updateDeckCards }) {
 
+    console.log(card);
+
     const [side, setSide] = useState(0);
     const [count, setCount] = useState(card.count);
 
@@ -22,6 +24,7 @@ function Card({ card, updateDeckCards }) {
             {card.image_uris ?
                 <div>
                     <img src={card.image_uris.normal} alt={card.name} /> 
+                    <p>{card.oracle_text}</p>
                 </div> :
                 <div>
                     <img src={card.card_faces[side].image_uris.normal} alt={card.name} />

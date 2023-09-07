@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form, FormGroup, Label, Input, Select, Option } from 'reactstrap';
 
 
 function CardSearchForm({ cardSearch }) {
@@ -102,56 +103,56 @@ function CardSearchForm({ cardSearch }) {
 
 
     return(
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
         
-        <div>
-            <label htmlFor="name">Name: </label>
-            <input id="name"
+        <FormGroup>
+            <Label htmlFor="name">Name: </Label>
+            <Input id="name"
                 type="text"
                 name="name"
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleChange} />
-        </div>
+        </FormGroup>
 
-        <div>
-            <label htmlFor="colors">Colors: </label>
+        <FormGroup>
+            <Label htmlFor="colors">Colors: </Label>
 
-            <input name="colors"
+            <Input  name="colors"
                 type="checkbox"
                 value="W"
                 onChange={handleColorsChecks} />
-            <label htmlFor='W'>White</label>
+            <Label htmlFor='W'>White</Label>
 
-            <input name="colors"
+            <Input name="colors"
                 type="checkbox"
                 value="U"
                 onChange={handleColorsChecks} />
-            <label htmlFor='U'>Blue</label>
+            <Label htmlFor='U'>Blue</Label>
 
-            <input name="colors"
+            <Input name="colors"
                 type="checkbox"
                 value="B"
                 onChange={handleColorsChecks} />
-            <label htmlFor='B'>Black</label>
+            <Label htmlFor='B'>Black</Label>
 
-            <input name="colors"
+            <Input name="colors"
                 type="checkbox"
                 value="R"
                 onChange={handleColorsChecks} />
-            <label htmlFor='R'>Red</label>
+            <Label htmlFor='R'>Red</Label>
 
-            <input name="colors"
+            <Input name="colors"
                 type="checkbox"
                 value="G"
                 onChange={handleColorsChecks} />
-            <label htmlFor="G">Green</label> 
+            <Label htmlFor="G">Green</Label> 
 
-            <input name="colors"
+            <Input name="colors"
                 type="checkbox"
                 value="C"
                 onChange={handleColorsChecks} />
-            <label htmlFor="C">Colorless</label>
+            <Label htmlFor="C">Colorless</Label>
 
             <select name="color-options" id="color-options" onChange={handleColorOptions}>
                 <option value="">---Select an Option---</option>
@@ -159,74 +160,74 @@ function CardSearchForm({ cardSearch }) {
                 <option value="at-most">At Most</option>
                 <option value="including">Including</option>
             </select>
-        </div>
+        </FormGroup>
 
-        <div>
-            <label htmlFor="types">Type: </label>
+        <FormGroup>
+            <Label htmlFor="types">Type: </Label>
 
-            <input name="types"
-                    type="checkbox"
-                    value="artifact"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Artifact'>Artifact</label>
+            <Input name="types"
+                type="checkbox"
+                value="artifact"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Artifact'>Artifact</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="creature"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Creature'>Creature</label>
+            <Input name="types"
+                type="checkbox"
+                value="creature"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Creature'>Creature</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="enchantment"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Enchantment'>Enchantment</label>
+            <Input name="types"
+                type="checkbox"
+                value="enchantment"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Enchantment'>Enchantment</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="land"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Land'>Land</label>
+            <Input name="types"
+                type="checkbox"
+                value="land"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Land'>Land</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="basic"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='BasicLand'>Basic Land</label>
+            <Input name="types"
+                type="checkbox"
+                value="basic"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='BasicLand'>Basic Land</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="legendary"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Legendary'>Legendary</label>
+            <Input name="types"
+                type="checkbox"
+                value="legendary"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Legendary'>Legendary</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="planeswalker"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Planeswalker'>Planeswalker</label>
+            <Input name="types"
+                type="checkbox"
+                value="planeswalker"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Planeswalker'>Planeswalker</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="sorcery"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Sorcery'>Sorcery</label>
+            <Input name="types"
+                type="checkbox"
+                value="sorcery"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Sorcery'>Sorcery</Label>
 
-                <input name="types"
-                    type="checkbox"
-                    value="instant"
-                    onChange={handleTypesChecks} />
-                <label htmlFor='Instant'>Instant</label>
+            <Input name="types"
+                type="checkbox"
+                value="instant"
+                onChange={handleTypesChecks} />
+            <Label htmlFor='Instant'>Instant</Label>
 
-                <input name="or"
-                    type="checkbox"
-                    value="or"
-                    onChange={handleOrChecks} />
-                <label htmlFor='or'>Including These</label>
-            </div>
+            <Input name="or"
+                type="checkbox"
+                value="or"
+                onChange={handleOrChecks} />
+            <Label htmlFor='or'>Including These</Label>
+        </FormGroup>
             
-            <button>Search</button>
-        </form>
+            <Button>Search</Button>
+        </Form>
     );
 }
 

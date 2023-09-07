@@ -6,20 +6,20 @@ function NavagationBar() {
     
     return (
         <div style={{
-            display: 'block', padding: 30
+            display: 'block'
           }}>
-            <Navbar color="light" light expand="md">
-                <Nav className="mr-autp" navbar>
-                    <NavItem>
+            <Navbar color="dark" light expand="md">
+                <Nav className="mx-auto" navbar>
+                    <NavItem className="p-3">
                         <NavLink to="/">Home</NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem className="p-3">
                         <NavLink to="/cards">Cards</NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem className="p-3">
                         <NavLink to="/decks">Decks</NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem className="p-3">
                         <NavLink to="/create">Create a Deck</NavLink>
                     </NavItem>
                 </Nav>

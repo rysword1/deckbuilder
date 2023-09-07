@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
+import './App.css';
 import { Link } from "react-router-dom";
-
 
 function Home({ randCard, randDeck }) {
 
@@ -9,7 +9,7 @@ function Home({ randCard, randDeck }) {
 
     return (
         <div>
-            <h1>Welcome to MTG Deckbuiler</h1>
+            <h1 className='Welcome'>Welcome to MTG Deckbuiler</h1>
 
             <h2>Check out this random deck!</h2>
 

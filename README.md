@@ -2,6 +2,7 @@
 url link where project is deployed
 
 ## Description
+Many people play Magic the Gathering and those who do enjoy creating their own decks.
 This is a deckbuilder for the card game Magic The Gathering.
 It allows a user to create a deck of cards and helps them keep track of their physical collection per deck.
 
@@ -19,4 +20,4 @@ PostgreSQL,
 ExpressJS,
 ReactJS,
 Javascript,
-nodeJS
+node.JS

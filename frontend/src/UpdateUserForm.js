@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, FormGroup, Input } from "reactstrap";
 
-function RegisterForm() {
+function UserUpdateForm() {
     
     let navigate = useNavigate();
 
@@ -88,4 +88,4 @@ function RegisterForm() {
     )
 }
 
-export default RegisterForm;
+export default UserUpdateForm;

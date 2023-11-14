@@ -44,7 +44,7 @@ class Deck {
         const { titleLike } = searchFilters;
 
         if (titleLike !== undefined) {
-            values.push(`%${titleLike}%`)
+            values.push(`%${titleLike}%`);
             where.push(`title LIKE $${values.length}`);
         }
 
